@@ -33,9 +33,9 @@
 
     <modules>
         <module>benten-common</module>
-        <module>benten-jira</module>
+        <module>benten-jira-bolt</module>
         <module>benten-core</module>
-        <module>benten-jenkins</module>
+        <module>benten-jenkins-bolt</module>
         <module>benten-mock</module>
         <module>benten-archetype</module>
         <module>benten-examples</module>

@@ -63,12 +63,12 @@
         </dependency>
         <dependency>
             <groupId>com.intuit.benten</groupId>
-            <artifactId>benten-jira</artifactId>
+            <artifactId>benten-jira-bolt</artifactId>
             <version>${benten.version}</version>
         </dependency>
         <dependency>
             <groupId>com.intuit.benten</groupId>
-            <artifactId>benten-jenkins</artifactId>
+            <artifactId>benten-jenkins-bolt</artifactId>
             <version>${benten.version}</version>
         </dependency>
 
