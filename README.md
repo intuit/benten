@@ -12,7 +12,7 @@ In case you were wondering why the name BenTen! You can find an answer here [Why
 ## Features
 |Jira Feature|Command  |
 |--|--|
-|Create new JIRA Story/Bug/Sub-Task  |```create story``` , ```create bug```, ```create subtask```, ```create story Experience benten jira integration project BENTEN```  |
+|Create new JIRA Story/Bug/Sub-Task  |```create jira story``` , ```create jira bug```, ```create jira subtask```, ```create jira story Experience benten jira integration project BENTEN```  |
 |Show details of a JIRA issue  |```details of issue```, ```details of issue BENTEN-1```  |
 |Assign issue  |```assign issue BENTEN-1 to @divakarungatla```  |
 |Search issues assigned to me or created by me  |```my issues```, ```my tickets```  |
