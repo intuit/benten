@@ -1,6 +1,8 @@
 # <img src="benten-core/src/main/resources/benten.png" height="42" width="42"/> BenTen
 ## CUI Chatbot framework (Has out of the box `slack-bot` support for `Jira` and `Jenkins`)
 
+[![License](https://img.shields.io/github/license/intuit/benten.svg)](https://github.com/intuit/benten)
+
 BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building uesful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/) and [IKY](https://github.com/alfredfrancis/ai-chatbot-framework), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
 It also has support to render messages in various formats like Slack, html (html to image conversion), csv etc...
 
