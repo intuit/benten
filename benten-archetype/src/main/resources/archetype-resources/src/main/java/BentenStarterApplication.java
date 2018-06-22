@@ -1,5 +1,3 @@
-package ${groupId}
-
 import com.intuit.benten.mock.MockFeatureServerRunner;
 import com.intuit.benten.nlp.NlpClient;
 import com.intuit.benten.nlp.dialogflow.DialogFlowClient;
