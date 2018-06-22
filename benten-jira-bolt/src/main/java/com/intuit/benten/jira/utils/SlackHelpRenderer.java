@@ -90,13 +90,13 @@ public class SlackHelpRenderer {
         BentenSlackAttachment bentenSlackAttachment = createBentenSlackAttachment("Create jira issue",
                 "Create any type of issue in Jira. I will prompt you if there is any required field missing.");
 
-        BentenSlackField start = new BentenSlackField("Simple Start: ", SlackFormatter.create().code("create story ")
-                .code("create bug ").code("create subtask ")
+        BentenSlackField start = new BentenSlackField("Simple Start: ", SlackFormatter.create().code("create jira story ")
+                .code("create jira bug ").code("create jira subtask ")
                 .build(),false );
         bentenSlackAttachment.addBentenSlackField(start);
 
         BentenSlackField shorthand = new BentenSlackField("Example: ", SlackFormatter.create()
-                .preformatted("create story Experience benten jira integration project BENTEN")
+                .preformatted("create jira story Experience benten jira integration project BENTEN")
                 .build(),false );
         bentenSlackAttachment.addBentenSlackField(shorthand);
 
@@ -182,7 +182,7 @@ public class SlackHelpRenderer {
                 .build(),false );
         bentenSlackAttachment.addBentenSlackField(format);
 
-        BentenSlackField start = new BentenSlackField("Simple Start: ", SlackFormatter.create().code("log ")
+        BentenSlackField start = new BentenSlackField("Simple Start: ", SlackFormatter.create().code("my issues")
                 .build(),false );
         bentenSlackAttachment.addBentenSlackField(start);
 
