@@ -53,7 +53,7 @@ Now that you have experienced the bot, let us set up BenTen with your `own` slac
 
 There is a maven archetype(benten-archetype) that I created that can be used to set up a skeleton project super quick. Run the below command in your termimal.
 ```sh
-mvn archetype:generate -DarchetypeGroupId=com.intuit.benten -DarchetypeArtifactId=benten-archetype -DarchetypeVersion=1.0-SNAPSHOT -DgroupId=com.mycompany -DartifactId=benten-starter
+mvn archetype:generate -DarchetypeGroupId=com.intuit.benten -DarchetypeArtifactId=benten-archetype -DarchetypeVersion=0.1.0 -DgroupId=com.mycompany -DartifactId=benten-starter
 cd benten-starter
 mvn clean install -Dmaven.test.skip=true
 ```
