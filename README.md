@@ -5,7 +5,7 @@
 [![Support Slack](https://img.shields.io/badge/support-slack-red.svg)](https://join.slack.com/t/bentenapp/shared_invite/enQtMzY5Mzc2ODg4MDY1LWRiM2EwNWE0Mjc4ZmYyZThhY2I2YzI4MzE2NDJiYWI0NGM1M2YzMGY1YzEyN2EwYzcwZDllZTFiMmI1OWZkNzE)
 [![License](https://img.shields.io/github/license/intuit/benten.svg)](https://github.com/intuit/benten)
 
-BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building uesful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/) and [IKY](https://github.com/alfredfrancis/ai-chatbot-framework), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
+BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building useful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/) and [IKY](https://github.com/alfredfrancis/ai-chatbot-framework), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
 It also has support to render messages in various formats like Slack, html (html to image conversion), csv etc...
 
 The frame work lets you concentrate on the `core` functionality you want to build (for example building a conversational chatbot to monitor application health and show it in slack on demand) rather than worry about integrations with slack, NLP engines or applications like Jira, Jenkins and the orchestration between these systems.
@@ -132,7 +132,7 @@ Remember, at this point benten is still running against the karate mocks that co
 cd benten-starter
 vi src/main/resources/benten.properties
 ```
-In line #16 change `benten.jira.baseurl` url to point to your own jira instance instead of the local host. Also change `benten.jira.username` and `benten.jira.password` accordingly. BenTen uses these credentials to connect to Jira. Save the changes.
+In line #16 change `benten.jira.baseurl` url to point to your own jira instance instead of the localhost. Also change `benten.jira.username` and `benten.jira.password` accordingly. BenTen uses these credentials to connect to Jira. Save the changes.
 
 ```sh
 cd benten-starter
@@ -159,7 +159,7 @@ Similar to Jira make changes for Jenkins as well in `benten.properties`.
 cd benten-starter
 vi src/main/resources/benten.properties
 ```
-In line #18 change `benten.jenkins.baseurl` url to point to your own jenkins instance instead of the local host. Also change `benten.jenkins.username` and `benten.jenkins.password` accordingly. BenTen uses these credentials to connect to Jira. Save the changes.
+In line #18 change `benten.jenkins.baseurl` url to point to your own jenkins instance instead of the localhost. Also change `benten.jenkins.username` and `benten.jenkins.password` accordingly. BenTen uses these credentials to connect to Jira. Save the changes.
 
 Restart your application
 ```
