@@ -5,7 +5,7 @@
 [![Support Slack](https://img.shields.io/badge/support-slack-red.svg)](https://join.slack.com/t/bentenapp/shared_invite/enQtMzg3MTkwNjc1MDkxLWI2ZDkzZjVhNTk2ZThlMjRhNTg3ZTc5OGExYTk1MGZkYTQ3Yzg3NzAzYWQyYzM5ZThiMGE2Mjk2OGZlOWUzYzk)
 [![License](https://img.shields.io/github/license/intuit/benten.svg)](https://github.com/intuit/benten)
 
-BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building useful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/) and [IKY](https://github.com/alfredfrancis/ai-chatbot-framework), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
+BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building useful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
 It also has support to render messages in various formats like Slack, html (html to image conversion), csv etc...
 
 The frame work lets you concentrate on the `core` functionality you want to build (for example building a conversational chatbot to monitor application health and show it in slack on demand) rather than worry about integrations with slack, NLP engines or applications like Jira, Jenkins and the orchestration between these systems.
@@ -26,6 +26,8 @@ In case you were wondering why the name BenTen! You can find an answer here [Why
 |Transition issue  |```move BENTEN-1 to inprogress```  |
 |Cycle time for a sprint  |```cycle time of board Benten over last 2 sprints```  |
 |Velocity of a team based on a sprint  |```velocity of board Benten over last 2 sprints```  |
+
+**_Note:_** BenTen uses a headless user which you are going to specify in the benten properties file in the following sections to perform the jira operations. So some features like `assign` `move` will need the headless user to be added as admin to you projects. Here is how you do it [Add user as admin in Jira](https://confluence.atlassian.com/jiracoreserver073/managing-project-role-memberships-861257122.html).
 
 |Jenkins Feature|Command  |
 |--|--|
@@ -69,7 +71,7 @@ To set up BenTen from sources follow the below steps
 git clone https://github.com/intuit/benten
 mvn clean install -Dmaven.test.skip=true
 ```
-## To use BenTen in your existing spring project include the below dependencies in your projects pom.xml
+## To use BenTen in your existing spring project include the below dependencies in your projects pom.xml and refer to [Setting up](https://github.com/intuit/benten/blob/master/benten-starter/src/main/java/BentenStarterApplication.java) to initialize BenTen.
 
 ```xml
 <dependency>
