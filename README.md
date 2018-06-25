@@ -69,6 +69,29 @@ To set up BenTen from sources follow the below steps
 git clone https://github.com/intuit/benten
 mvn clean install -Dmaven.test.skip=true
 ```
+## To use BenTen in your existing spring project include the below dependencies in your projects pom.xml
+
+```xml
+<dependency>
+    <groupId>com.intuit.benten</groupId>
+    <artifactId>benten-core</artifactId>
+    <version>0.1.2</version>
+</dependency>
+```
+#### Include Jira and Jenkins bolts
+
+```xml
+<dependency>
+    <groupId>com.intuit.benten</groupId>
+    <artifactId>benten-jira-bolt</artifactId>
+    <version>0.1.2</version>
+</dependency>
+<dependency>
+    <groupId>com.intuit.benten</groupId>
+    <artifactId>benten-jenkins-bolt</artifactId>
+    <version>0.1.2</version>
+</dependency>
+```
 
 ## Create a slack team and slackbot(You can skip this section if you already have a slack bot API token)
 
