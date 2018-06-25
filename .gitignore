@@ -30,5 +30,6 @@ hs_err_pid*
 karate.log
 *-secret.properties
 *catalina.*
+*/target/*
 
 
