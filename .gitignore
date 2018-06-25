@@ -32,4 +32,5 @@ karate.log
 *catalina.*
 */target/*
 
-
+#target folders
+*/target/*
