@@ -39,6 +39,7 @@
         <module>benten-mock</module>
         <module>benten-archetype</module>
         <module>benten-examples</module>
+        <module>benten-splunk-bolt</module>
     </modules>
 
     <properties>
