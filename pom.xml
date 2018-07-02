@@ -4,7 +4,7 @@
 
     <groupId>com.intuit.benten</groupId>
     <artifactId>benten-parent</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <packaging>pom</packaging>
 
     <name>benten-parent</name>

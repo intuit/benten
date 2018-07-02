@@ -108,9 +108,13 @@ public class SlackChannel implements Channel {
     }
 
     EventListener helloEventListener = (JsonNode jsonNode) -> {
-        System.out.println(jsonNode.toString());
-        Authentication authentication = this.slackWebApiClient.auth();
-        this.botUserId = authentication.getUser_id();
+        try {
+            logger.info("hello message from server : " + jsonNode.toString());
+            Authentication authentication = this.slackWebApiClient.auth();
+            this.botUserId = authentication.getUser_id();
+        }catch (Exception e){
+            logger.error("hello exception : ",e);
+        }
     };
 
 
@@ -137,7 +141,10 @@ public class SlackChannel implements Channel {
             String channel = JsonPath.read(jsonNode.toString(),"$.channel");
 
             if(channel!=null ){
+                logger.info("Message from channel : " + channel);
+
                 if(channel.startsWith("C") || channel.startsWith("G")) {
+
                     if (!message.contains("<@" + botUserId + ">")) {
                         return null;
                     }
@@ -148,8 +155,6 @@ public class SlackChannel implements Channel {
             SlackUser slackUser = new SlackUser();
             slackUser.setName(user.getName());
             slackUser.setId(user.getId());
-
-
 
             if(message.toLowerCase().equals("reset") || message.toLowerCase().equals("cancel")){
                 logger.info("Received a request to reset "+user.toString()+". Clearing all contexts" );
