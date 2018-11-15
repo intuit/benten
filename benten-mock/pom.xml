@@ -5,7 +5,7 @@
     <parent>
         <artifactId>benten-parent</artifactId>
         <groupId>com.intuit.benten</groupId>
-        <version>0.1.4</version>
+        <version>0.1.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.intuit.benten</groupId>
             <artifactId>benten-common</artifactId>
-            <version>0.1.4</version>
+            <version>0.1.5</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
