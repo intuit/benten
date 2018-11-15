@@ -9,10 +9,13 @@ import com.intuit.benten.common.constants.SlackConstants;
 import com.intuit.benten.jira.converters.JiraConverter;
 import com.intuit.benten.jira.exceptions.BentenJiraException;
 import com.intuit.benten.common.helpers.BentenMessageHelper;
+import com.intuit.benten.jira.http.JiraAgileHttpClient;
 import com.intuit.benten.jira.model.Field;
 import com.intuit.benten.jira.model.User;
 import com.intuit.benten.jira.utils.SlackMessageRenderer;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +30,7 @@ import java.util.List;
 @ActionHandler(action = JiraActions.ACTION_JIRA_CREATE_ISSUE)
 public class JiraCreateIssueActionHandler implements BentenActionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(JiraCreateIssueActionHandler.class);
 
     @Autowired
     private BentenJiraClient bentenJiraClient;
@@ -62,11 +66,16 @@ public class JiraCreateIssueActionHandler implements BentenActionHandler {
 
             User assignee = new User();
             User reporter = new User();
-
-            assignee.setName(currentUser);
-            reporter.setName(currentUser);
-
-            bentenJiraClient.updateAssigneeAndReporter(issueUri.substring(issueUri.lastIndexOf("/") + 1), assignee, reporter);
+            try{
+                assignee.setName(currentUser);
+                reporter.setName(currentUser);
+                bentenJiraClient.updateAssigneeAndReporter(issueUri.substring(issueUri.lastIndexOf("/") + 1), assignee, reporter);
+            }
+            catch(Exception e){
+                // setting either assignee or reporter has failed
+                logger.info("Issues was created successfully. But updating the reporter/assignee failed. Ignoring this exception");
+                logger.error("Issues was created successfully. But updating the reporter/assignee failed. Ignoring this exception",e);
+            }
 
             bentenHandlerResponse.setBentenSlackResponse(SlackMessageRenderer.createIssueMessage(issueUri));
 
