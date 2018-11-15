@@ -12,9 +12,9 @@
     <properties>
         <java.version>1.8</java.version>
         <karate.version>0.7.0.1</karate.version>
-        <benten.version>0.1.3</benten.version>
+        <benten.version>0.1.4</benten.version>
     </properties>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
     <packaging>war</packaging>
     <modelVersion>4.0.0</modelVersion>
 
