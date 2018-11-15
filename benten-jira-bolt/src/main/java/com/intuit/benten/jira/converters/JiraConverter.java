@@ -348,12 +348,14 @@ public class JiraConverter {
 
             boolean required = jsonChildObject.getBoolean("required");
             if(required) {
-
-                if("Project".equals(jsonChildObject.getString("name")) || "Issue Type".equals(jsonChildObject.getString("name"))
-                        || "Summary".equals(jsonChildObject.getString("name")))
-                    continue;
-                jsonChildObject.put("key",key);
+                if(!key.startsWith("customfield")) {
+                    if ("Project".equals(jsonChildObject.getString("name")) || "Issue Type".equals(jsonChildObject.getString("name"))
+                            || "Summary".equals(jsonChildObject.getString("name")))
+                        continue;
+                }
+                jsonChildObject.put("key", key);
                 requiredFields.add(jsonChildObject);
+
             }
 
         }
