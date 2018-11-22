@@ -8,7 +8,8 @@
 BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building useful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
 It also has support to render messages in various formats like Slack, html (html to image conversion), csv etc...
 
-Benten makes it easy for anybody to implement Robotic Process Automation (https://en.wikipedia.org/wiki/Robotic_process_automation) and build their own personal assistants to take care of boring tasks.
+Benten makes it easy for anybody to build their own personal assistants to take care of mundane tasks.
+
 The frame work lets you concentrate on the `core` functionality you want to build (for example building a conversational chatbot to monitor application health and show it in slack on demand) rather than worry about integrations with slack, NLP engines or applications like Jira, Jenkins and the orchestration between these systems.
 
 ## Story behind the name `BenTen`
