@@ -5,20 +5,20 @@
 [![Support Slack](https://img.shields.io/badge/support-slack-red.svg)](https://join.slack.com/t/bentenapp/shared_invite/enQtMzg3MTkwNjc1MDkxLWI2ZDkzZjVhNTk2ZThlMjRhNTg3ZTc5OGExYTk1MGZkYTQ3Yzg3NzAzYWQyYzM5ZThiMGE2Mjk2OGZlOWUzYzk)
 [![License](https://img.shields.io/github/license/intuit/benten.svg)](https://github.com/intuit/benten)
 
-BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building useful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](www.atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
+BenTen is a CUI Chatbot framework that provides all the integrations that are necessary for building useful conversational chatbots in a few minutes. It has integrations with NLP engines like [Dialogflow](https://dialogflow.com/), Messaging platforms like [Slack](https://slack.com/), project management tools like [Jira](https://atlassian.com/Jira) and Continuous Integration Tools like [Jenkins](https://jenkins.io/).
 It also has support to render messages in various formats like Slack, html (html to image conversion), csv etc...
 
 Benten makes it easy for anybody to build their own personal assistants to take care of mundane tasks.
 
-The frame work lets you concentrate on the `core` functionality you want to build (for example building a conversational chatbot to monitor application health and show it in slack on demand) rather than worry about integrations with slack, NLP engines or applications like Jira, Jenkins and the orchestration between these systems.
+The framework lets you concentrate on the `core` functionality you want to build (for example building a conversational chatbot to monitor application health and show it in Slack on demand) rather than worry about integrations with Slack, NLP engines or applications like Jira, Jenkins and the orchestration between these systems.
 
 ## Story behind the name `BenTen`
-In case you were wondering why the name BenTen! You can find an answer here [Why the name Benten ?](https://en.wikipedia.org/wiki/Benzaiten)
+If you're wondering why the name BenTen, you can find an answer here [Why the name Benten ?](https://en.wikipedia.org/wiki/Benzaiten)
 
 ## Features
 |Jira Feature|Command  |
 |--|--|
-|Create new JIRA Story/Bug/Sub-Task  |```create jira story``` , ```create jira bug```, ```create jira subtask```, ```create jira story Experience benten jira integration project BENTEN```  |
+|Create new Jira Story/Bug/Sub-Task  |```create jira story``` , ```create jira bug```, ```create jira subtask```, ```create jira story Experience benten jira integration project BENTEN```  |
 |Show details of a JIRA issue  |```details of issue```, ```details of issue BENTEN-1```  |
 |Assign issue  |```assign issue BENTEN-1 to @divakarungatla```  |
 |Search issues assigned to me or created by me  |```my issues```, ```my tickets```  |
@@ -57,9 +57,9 @@ Now that you have experienced the bot, let us set up BenTen with your `own` slac
 > If you are behind a corporate proxy, or especially if your local Maven installation has been configured to point to a repository within your local network, the command below may not work. One workaround is to temporarily disable or rename your Maven [`settings.xml`](https://maven.apache.org/settings.html) file, and try again.
 
 
-## Setting up BenTen from binaries (recommended if you want just use existing capabilites and add custom features only specific to your organization)
+## Setting up BenTen from binaries (recommended if you want just use existing capabilities and add custom features only specific to your organization)
 
-There is a maven archetype(benten-archetype) that I created that can be used to set up a skeleton project super quick. Run the below command in your termimal.
+There is a maven archetype(benten-archetype) that I created that can be used to set up a skeleton project super quick. Run the below command in your terminal.
 ```sh
 mvn archetype:generate -DarchetypeGroupId=com.intuit.benten -DarchetypeArtifactId=benten-archetype -DarchetypeVersion=0.1.5 -DgroupId=com.mycompany -DartifactId=benten-starter
 cd benten-starter
