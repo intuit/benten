@@ -1,0 +1,330 @@
+{
+  "_class": "hudson.model.FreeStyleProject",
+  "actions": [
+    {
+      "_class": "com.cloudbees.plugins.deployer.DeployNowProjectAction",
+      "oneClickDeployPossible": false,
+      "oneClickDeployReady": false,
+      "oneClickDeployValid": false
+    },
+    {},
+    {
+      "_class": "hudson.model.ParametersDefinitionProperty",
+      "parameterDefinitions": [
+        {
+          "_class": "hudson.model.StringParameterDefinition",
+          "defaultParameterValue": {
+            "_class": "hudson.model.StringParameterValue",
+            "value": "team@benten.com"
+          },
+          "description": "",
+          "name": "EMAIL_RECIPIENTS",
+          "type": "StringParameterDefinition"
+        },
+        {
+          "_class": "hudson.model.ChoiceParameterDefinition",
+          "defaultParameterValue": {
+            "_class": "hudson.model.StringParameterValue",
+            "value": "QA"
+          },
+          "description": "",
+          "name": "PROFILE",
+          "type": "ChoiceParameterDefinition",
+          "choices": [
+            "QA",
+            "PROD"
+          ]
+        }
+      ]
+    },
+    {},
+    {},
+    {},
+    {
+      "_class": "hudson.plugins.disk_usage.ProjectDiskUsageAction"
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {
+      "_class": "hudson.plugins.jobConfigHistory.JobConfigHistoryProjectAction"
+    },
+    {},
+    {},
+    {
+      "_class": "nectar.plugins.rbac.roles.Roles"
+    },
+    {},
+    {
+      "_class": "org.jenkinsci.plugins.testresultsanalyzer.TestResultsAnalyzerAction"
+    },
+    {},
+    {
+      "_class": "com.cloudbees.plugins.credentials.ViewCredentialsAction"
+    }
+  ],
+  "description": "This job will validate all dependent services for Data Conversions. It is scheduled to run everyday at 8AM IST. ",
+  "displayName": "BenTen-Env-Stability",
+  "displayNameOrNull": null,
+  "fullDisplayName": "BenTen-Env-Stability",
+  "fullName": "BenTen-Env-Stability",
+  "name": "BenTen-Env-Stability",
+  "url": "http://localhost:8001/job/BenTen-Env-Stability/",
+  "buildable": true,
+  "builds": [
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 444,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/444/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 443,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/443/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 442,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/442/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 441,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/441/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 440,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/440/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 439,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/439/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 438,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/438/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 437,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/437/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 436,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/436/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 435,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/435/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 434,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/434/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 433,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/433/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 432,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/432/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 431,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/431/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 430,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/430/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 429,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/429/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 428,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/428/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 427,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/427/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 426,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/426/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 425,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/425/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 424,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/424/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 423,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/423/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 422,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/422/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 421,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/421/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 420,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/420/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 419,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/419/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 418,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/418/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 417,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/417/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 416,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/416/"
+    },
+    {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 415,
+      "url": "http://localhost:8001/job/BenTen-Env-Stability/415/"
+    }
+  ],
+  "color": "blue",
+  "firstBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 415,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/415/"
+  },
+  "healthReport": [
+    {
+      "description": "Test Result: 0 tests failing out of a total of 3 tests.",
+      "iconClassName": "icon-health-80plus",
+      "iconUrl": "health-80plus.png",
+      "score": 100
+    },
+    {
+      "description": "Build stability: No recent builds failed.",
+      "iconClassName": "icon-health-80plus",
+      "iconUrl": "health-80plus.png",
+      "score": 100
+    }
+  ],
+  "inQueue": false,
+  "keepDependencies": false,
+  "lastBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 444,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/444/"
+  },
+  "lastCompletedBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 444,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/444/"
+  },
+  "lastFailedBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 424,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/424/"
+  },
+  "lastStableBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 444,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/444/"
+  },
+  "lastSuccessfulBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 444,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/444/"
+  },
+  "lastUnstableBuild": null,
+  "lastUnsuccessfulBuild": {
+    "_class": "hudson.model.FreeStyleBuild",
+    "number": 424,
+    "url": "http://localhost:8001/job/BenTen-Env-Stability/424/"
+  },
+  "nextBuildNumber": 444,
+  "property": [
+    {
+      "_class": "hudson.security.AuthorizationMatrixProperty"
+    },
+    {
+      "_class": "hudson.plugins.buildblocker.BuildBlockerProperty"
+    },
+    {
+      "_class": "com.cloudbees.jenkins.plugins.cbv.ui.JobPropertyImpl"
+    },
+    {
+      "_class": "com.cloudbees.plugins.deployer.DeployNowJobProperty"
+    },
+    {
+      "_class": "jenkins.model.BuildDiscarderProperty"
+    },
+    {
+      "_class": "hudson.plugins.disk_usage.DiskUsageProperty"
+    },
+    {
+      "_class": "com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty"
+    },
+    {
+      "_class": "com.sonyericsson.rebuild.RebuildSettings"
+    },
+    {
+      "_class": "com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty"
+    },
+    {
+      "_class": "hudson.plugins.throttleconcurrents.ThrottleJobProperty"
+    },
+    {
+      "_class": "org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty"
+    }
+  ],
+  "queueItem": null,
+  "concurrentBuild": false,
+  "downstreamProjects": [],
+  "scm": {
+    "_class": "hudson.plugins.git.GitSCM"
+  },
+  "upstreamProjects": []
+}

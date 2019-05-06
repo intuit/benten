@@ -1,0 +1,583 @@
+{
+  "expand": "projects",
+  "projects": [
+    {
+      "expand": "issuetypes",
+      "self": "https://jira.benten.com/rest/api/2/project/25627",
+      "id": "25627",
+      "key": "BENTEN",
+      "name": "BenTen",
+      "avatarUrls": {
+        "48x48": "https://jira.benten.com/secure/projectavatar?pid=25627&avatarId=10011",
+        "24x24": "https://jira.benten.com/secure/projectavatar?size=small&pid=25627&avatarId=10011",
+        "16x16": "https://jira.benten.com/secure/projectavatar?size=xsmall&pid=25627&avatarId=10011",
+        "32x32": "https://jira.benten.com/secure/projectavatar?size=medium&pid=25627&avatarId=10011"
+      },
+      "issuetypes": [
+        {
+          "self": "https://jira.benten.com/rest/api/2/issuetype/12",
+          "id": "12",
+          "description": "gh.issue.story.desc",
+          "iconUrl": "https://jira.benten.com/secure/viewavatar?size=xsmall&avatarId=24915&avatarType=issuetype",
+          "name": "Story",
+          "subtask": false,
+          "expand": "fields",
+          "fields": {
+            "summary": {
+              "required": true,
+              "schema": {
+                "type": "string",
+                "system": "summary"
+              },
+              "name": "Summary",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "issuetype": {
+              "required": true,
+              "schema": {
+                "type": "issuetype",
+                "system": "issuetype"
+              },
+              "name": "Issue Type",
+              "hasDefaultValue": false,
+              "operations": [],
+              "allowedValues": [
+                {
+                  "self": "https://jira.benten.com/rest/api/2/issuetype/12",
+                  "id": "12",
+                  "description": "gh.issue.story.desc",
+                  "iconUrl": "https://jira.benten.com/secure/viewavatar?size=xsmall&avatarId=24915&avatarType=issuetype",
+                  "name": "Story",
+                  "subtask": false,
+                  "avatarId": 24915
+                }
+              ]
+            },
+            "components": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "component",
+                "system": "components"
+              },
+              "name": "Component/s",
+              "hasDefaultValue": false,
+              "operations": [
+                "add",
+                "set",
+                "remove"
+              ],
+              "allowedValues": [
+                {
+                  "self": "https://jira.benten.com/rest/api/2/component/47145",
+                  "id": "47145",
+                  "name": "Client Service"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/component/47147",
+                  "id": "47147",
+                  "name": "Engagement Service"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/component/47146",
+                  "id": "47146",
+                  "name": "Firm Service"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/component/47148",
+                  "id": "47148",
+                  "name": "Migration"
+                }
+              ]
+            },
+            "customfield_18900": {
+              "required": false,
+              "schema": {
+                "type": "option",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+                "customId": 18900
+              },
+              "name": "Platform Type",
+              "hasDefaultValue": true,
+              "operations": [
+                "set"
+              ],
+              "allowedValues": [
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/31301",
+                  "value": "Online",
+                  "id": "31301"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/31302",
+                  "value": "Mobile",
+                  "id": "31302"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/31303",
+                  "value": "Desktop",
+                  "id": "31303"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/31304",
+                  "value": "Other",
+                  "id": "31304"
+                }
+              ]
+            },
+            "customfield_18504": {
+              "required": false,
+              "schema": {
+                "type": "datetime",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:datetime",
+                "customId": 18504
+              },
+              "name": "Released",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "customfield_12000": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "string",
+                "custom": "com.pyxis.greenhopper.jira:gh-sprint",
+                "customId": 12000
+              },
+              "name": "Sprint",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "description": {
+              "required": false,
+              "schema": {
+                "type": "string",
+                "system": "description"
+              },
+              "name": "Description",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "project": {
+              "required": true,
+              "schema": {
+                "type": "project",
+                "system": "project"
+              },
+              "name": "Project",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ],
+              "allowedValues": [
+                {
+                  "self": "https://jira.benten.com/rest/api/2/project/25627",
+                  "id": "25627",
+                  "key": "BENTEN",
+                  "name": "BenTen",
+                  "avatarUrls": {
+                    "48x48": "https://jira.benten.com/secure/projectavatar?pid=25627&avatarId=10011",
+                    "24x24": "https://jira.benten.com/secure/projectavatar?size=small&pid=25627&avatarId=10011",
+                    "16x16": "https://jira.benten.com/secure/projectavatar?size=xsmall&pid=25627&avatarId=10011",
+                    "32x32": "https://jira.benten.com/secure/projectavatar?size=medium&pid=25627&avatarId=10011"
+                  },
+                  "projectCategory": {
+                    "self": "https://jira.benten.com/rest/api/2/projectCategory/10700",
+                    "id": "10700",
+                    "description": "BenTen Group: PD",
+                    "name": "Benten: PD"
+                  }
+                }
+              ]
+            },
+            "customfield_13102": {
+              "required": false,
+              "schema": {
+                "type": "string",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:textarea",
+                "customId": 13102
+              },
+              "name": "Impact Analysis",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "customfield_12002": {
+              "required": false,
+              "schema": {
+                "type": "any",
+                "custom": "com.pyxis.greenhopper.jira:gh-epic-link",
+                "customId": 12002
+              },
+              "name": "Epic Link",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "fixVersions": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "version",
+                "system": "fixVersions"
+              },
+              "name": "Fix Version/s",
+              "hasDefaultValue": false,
+              "operations": [
+                "set",
+                "add",
+                "remove"
+              ],
+              "allowedValues": []
+            },
+            "priority": {
+              "required": false,
+              "schema": {
+                "type": "priority",
+                "system": "priority"
+              },
+              "name": "Priority",
+              "hasDefaultValue": true,
+              "operations": [
+                "set"
+              ],
+              "allowedValues": [
+                {
+                  "self": "https://jira.benten.com/rest/api/2/priority/1",
+                  "iconUrl": "https://jira.benten.com/images/icons/P0@3x.png",
+                  "name": "P0: Immediate",
+                  "id": "1"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/priority/2",
+                  "iconUrl": "https://jira.benten.com/images/icons/P1@3x.png",
+                  "name": "P1: High",
+                  "id": "2"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/priority/3",
+                  "iconUrl": "https://jira.benten.com/images/icons/P2@3x.png",
+                  "name": "P2: Medium",
+                  "id": "3"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/priority/4",
+                  "iconUrl": "https://jira.benten.com/images/icons/P3@3x.png",
+                  "name": "P3: Low",
+                  "id": "4"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/priority/10000",
+                  "iconUrl": "https://jira.benten.com/secure/attachment/874710/blank2.png",
+                  "name": "None",
+                  "id": "10000"
+                }
+              ]
+            },
+            "customfield_13304": {
+              "required": false,
+              "schema": {
+                "type": "option",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+                "customId": 13304
+              },
+              "name": "Dependency",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ],
+              "allowedValues": [
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27731",
+                  "value": "PSQ-379",
+                  "id": "27731"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27732",
+                  "value": "PSQ-378",
+                  "id": "27732"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27733",
+                  "value": "PSQ-374",
+                  "id": "27733"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27734",
+                  "value": "PSQ-373",
+                  "id": "27734"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27735",
+                  "value": "PSQ-372",
+                  "id": "27735"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27736",
+                  "value": "PSQ-120",
+                  "id": "27736"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27737",
+                  "value": "PSQ-403",
+                  "id": "27737"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27738",
+                  "value": "PSQ-426",
+                  "id": "27738"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27739",
+                  "value": "PSQ-409",
+                  "id": "27739"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27740",
+                  "value": "PSQ-408",
+                  "id": "27740"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27741",
+                  "value": "PSQ-407",
+                  "id": "27741"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27742",
+                  "value": "PSQ-406",
+                  "id": "27742"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27743",
+                  "value": "PSQ-321",
+                  "id": "27743"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27744",
+                  "value": "PSQ-296",
+                  "id": "27744"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27745",
+                  "value": "PSQ-188",
+                  "id": "27745"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27746",
+                  "value": "PSQ-161",
+                  "id": "27746"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27747",
+                  "value": "PSQ-139",
+                  "id": "27747"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27748",
+                  "value": "PSQ-133",
+                  "id": "27748"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27749",
+                  "value": "PSQ-130",
+                  "id": "27749"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27750",
+                  "value": "PSQ-71",
+                  "id": "27750"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27751",
+                  "value": "PSQ-46",
+                  "id": "27751"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27752",
+                  "value": "PSQ-52",
+                  "id": "27752"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27753",
+                  "value": "PSQ-38",
+                  "id": "27753"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27754",
+                  "value": "PSQ-531",
+                  "id": "27754"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27757",
+                  "value": "PYA-522",
+                  "id": "27757"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27758",
+                  "value": "FUND-1460",
+                  "id": "27758"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27759",
+                  "value": "FUND-1459",
+                  "id": "27759"
+                },
+                {
+                  "self": "https://jira.benten.com/rest/api/2/customFieldOption/27760",
+                  "value": "PWL-937",
+                  "id": "27760"
+                }
+              ]
+            },
+            "timetracking": {
+              "required": false,
+              "schema": {
+                "type": "timetracking",
+                "system": "timetracking"
+              },
+              "name": "Time Tracking",
+              "hasDefaultValue": false,
+              "operations": [
+                "set",
+                "edit"
+              ]
+            },
+            "labels": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "string",
+                "system": "labels"
+              },
+              "name": "Labels",
+              "autoCompleteUrl": "https://jira.benten.com/rest/api/1.0/labels/suggest?query=",
+              "hasDefaultValue": false,
+              "operations": [
+                "add",
+                "set",
+                "remove"
+              ]
+            },
+            "customfield_13504": {
+              "required": false,
+              "schema": {
+                "type": "date",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:datepicker",
+                "customId": 13504
+              },
+              "name": "Due Date",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "customfield_13624": {
+              "required": false,
+              "schema": {
+                "type": "string",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:textarea",
+                "customId": 13624
+              },
+              "name": "Acceptance Criteria",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "attachment": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "attachment",
+                "system": "attachment"
+              },
+              "name": "Attachment",
+              "hasDefaultValue": false,
+              "operations": []
+            },
+            "versions": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "version",
+                "system": "versions"
+              },
+              "name": "Affects Version/s",
+              "hasDefaultValue": false,
+              "operations": [
+                "set",
+                "add",
+                "remove"
+              ],
+              "allowedValues": []
+            },
+            "customfield_11703": {
+              "required": false,
+              "schema": {
+                "type": "number",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+                "customId": 11703
+              },
+              "name": "Story Points",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "customfield_10707": {
+              "required": false,
+              "schema": {
+                "type": "string",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:textarea",
+                "customId": 10707
+              },
+              "name": "Migration Notes",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            },
+            "issuelinks": {
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": "issuelinks",
+                "system": "issuelinks"
+              },
+              "name": "Linked Issues",
+              "autoCompleteUrl": "https://jira.benten.com/rest/api/2/issue/picker?currentProjectId=&showSubTaskParent=true&showSubTasks=true&currentIssueKey=null&query=",
+              "hasDefaultValue": false,
+              "operations": [
+                "add"
+              ]
+            },
+            "customfield_10708": {
+              "required": false,
+              "schema": {
+                "type": "string",
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:textarea",
+                "customId": 10708
+              },
+              "name": "Notes",
+              "hasDefaultValue": false,
+              "operations": [
+                "set"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

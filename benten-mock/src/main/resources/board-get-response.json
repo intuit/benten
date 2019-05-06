@@ -1,0 +1,13 @@
+{  
+   "maxResults":50,
+   "startAt":0,
+   "isLast":true,
+   "values":[  
+      {  
+         "id":15493,
+         "self":"https://jira.benten.com/rest/agile/1.0/board/15493",
+         "name":"Combined_Services_Team_view",
+         "type":"scrum"
+      }
+   ]
+}

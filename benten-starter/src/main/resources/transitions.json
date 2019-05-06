@@ -1,0 +1,59 @@
+{
+  "expand": "transitions",
+  "transitions": [
+    {
+      "id": "4",
+      "name": "Start Progress",
+      "to": {
+        "self": "https://jiraprf.benten.com/rest/api/2/status/3",
+        "description": "This issue is being actively worked on at the moment by the assignee.",
+        "iconUrl": "https://jiraprf.benten.com/images/icons/statuses/inprogress.png",
+        "name": "In Progress",
+        "id": "3",
+        "statusCategory": {
+          "self": "https://jiraprf.benten.com/rest/api/2/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "In Progress"
+        }
+      }
+    },
+    {
+      "id": "2",
+      "name": "Accept Issue",
+      "to": {
+        "self": "https://jiraprf.benten.com/rest/api/2/status/6",
+        "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+        "iconUrl": "https://jiraprf.benten.com/images/icons/statuses/closed.png",
+        "name": "Closed",
+        "id": "6",
+        "statusCategory": {
+          "self": "https://jiraprf.benten.com/rest/api/2/statuscategory/3",
+          "id": 3,
+          "key": "done",
+          "colorName": "green",
+          "name": "Done"
+        }
+      }
+    },
+    {
+      "id": "851",
+      "name": "Issue Blocked",
+      "to": {
+        "self": "https://jiraprf.benten.com/rest/api/2/status/10011",
+        "description": "",
+        "iconUrl": "https://jiraprf.benten.com/images/icons/statuses/needinfo.png",
+        "name": "Blocked",
+        "id": "10011",
+        "statusCategory": {
+          "self": "https://jiraprf.benten.com/rest/api/2/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "In Progress"
+        }
+      }
+    }
+  ]
+}
