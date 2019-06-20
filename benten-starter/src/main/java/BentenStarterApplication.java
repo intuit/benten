@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import javax.annotation.PostConstruct;
 
 
-@SpringBootApplication(scanBasePackages={"com.intuit.benten","com.example"})
+@SpringBootApplication(scanBasePackages={"com.intuit.benten","com.example", "com.intuit.benten.splunk"})
 @EnableAutoConfiguration
 public class BentenStarterApplication extends SpringBootServletInitializer {
 
