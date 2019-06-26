@@ -5,7 +5,7 @@ public class BasicTimeDuration {
     private String unit;
 
     public BasicTimeDuration(){
-        this.val = 1;
+        this.val = 4;
         this.unit = "h";
     }
 
