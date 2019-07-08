@@ -53,7 +53,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
             ArrayList<HashMap<String, String>> listOfTransactions = splunkHttpClient.runQuery(applicationId);
             Collections.reverse(listOfTransactions);
 
-            System.out.println(listOfTransactions);
+            System.out.println(listOfTransactions.toString());
             bentenSlackResponse = generateMeaningfulInfo(listOfTransactions);
             bentenHandlerResponse.setBentenSlackResponse(bentenSlackResponse);
         } catch (BentenSplunkException exception) {
