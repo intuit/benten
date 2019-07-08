@@ -12,7 +12,6 @@ public class Expectations {
     private static Gson gson = new Gson();
 
     public static void createDefaultExpectations(ClientAndServer mockServer) {
-        // GET
         getAppId(mockServer);
     }
 
@@ -25,5 +24,4 @@ public class Expectations {
                 .withQueryStringParameter("auth_code", "1234"))
                 .respond(response().withStatusCode(200).withBody(gson.toJson(jsonObject)));
     }
-
 }

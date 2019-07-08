@@ -22,6 +22,7 @@ public class SplunkHttpClient {
 
     @Autowired
     private SplunkProperties splunkProperties;
+    private Service splunkService;
 
     @PostConstruct
     public void init() {
@@ -31,8 +32,6 @@ public class SplunkHttpClient {
             logger.error(ex.getMessage(), ex);
         }
     }
-
-    private Service splunkService;
 
     private void authenticate() {
         ServiceArgs loginArgs = new ServiceArgs();
@@ -65,7 +64,10 @@ public class SplunkHttpClient {
         oneShotSearchArgs.put("latest_time", "now");
         oneShotSearchArgs.put("output_mode", "json");
 
+        //request
         InputStream oneShotSearchResults = splunkService.oneshotSearch(oneShotSearchQuery, oneShotSearchArgs);
+
+        //fetching results one by one
         ResultsReaderJson resultsReaderNormalSearch;
         try {
             resultsReaderNormalSearch = new ResultsReaderJson(oneShotSearchResults);

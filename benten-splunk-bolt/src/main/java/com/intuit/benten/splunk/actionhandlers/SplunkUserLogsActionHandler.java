@@ -22,6 +22,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 @Component
 @ActionHandler(action = SplunkActions.ACTION_GET_USER_INFO)
 public class SplunkUserLogsActionHandler implements BentenActionHandler {
+
     private static final Logger logger = LoggerFactory.getLogger(SplunkUserLogsActionHandler.class);
     private static final String GET_URL_FOR_APPLICATION_ID = "http://localhost:8080/get_token?auth_code=";
     private static final String JSON_FILE_PATH = "/Users/asingh63/Downloads/work/benten-build/benten/benten-splunk-bolt/src/test/java/com/intuit/benten/splunk/list-of-transactions.json";
@@ -46,11 +48,10 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
         BentenSlackResponse bentenSlackResponse;
 
         String authCode = BentenMessageHelper.getParameterAsString(bentenMessage, SplunkActionParameters.PARAMETER_AUTHORISATION_CODE);
-
         String applicationId = null;
         try {
             applicationId = getApplicationId(authCode);
-        } catch (IOException | JSONException e) {
+        } catch (JSONException e) {
             logger.error(e.getMessage());
         }
 
@@ -103,8 +104,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
                 case "forminfo": {
 
                     StringBuilder formInfo = new StringBuilder();
-                    formInfo
-                            .append(messageInfo)
+                    formInfo.append(messageInfo)
                             .append(buildMessageHelper(transaction, "taxformname", "User asked for the info about the following form -"));
 
                     buildSlackResponse(formInfo);
@@ -191,13 +191,14 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
                 break;
             }
         }
+
         BentenSlackResponse bentenSlackResponse = new BentenSlackResponse();
         bentenSlackResponse.setSlackText(slackFormatter.build());
 
         return bentenSlackResponse;
     }
 
-    public String getApplicationId(String authCode) throws IOException, JSONException {
+    public String getApplicationId(String authCode) throws JSONException {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -213,9 +214,8 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
                 .getBody();
 
         JSONObject jsonObject = new org.json.JSONObject(response);
-        String appId = jsonObject.getString("app_id");
 
-        return appId;
+        return jsonObject.getString("app_id");
     }
 
     public String buildMessageHelper(HashMap<String, String> transaction, String key, String additionalText) {

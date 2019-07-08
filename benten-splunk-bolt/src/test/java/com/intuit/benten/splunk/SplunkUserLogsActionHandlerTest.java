@@ -61,8 +61,8 @@ public class SplunkUserLogsActionHandlerTest {
         JsonElement jsonElement = new JsonPrimitive("1234");
         BentenHandlerResponse bentenHandlerResponse = splunkUserLogsActionHandler.handle(MessageBuilder.constructBentenUserLogsMessage(jsonElement));
 
-        //Assert.assertNotNull(bentenHandlerResponse.getBentenSlackResponse());
-        //Assert.assertNotNull(bentenHandlerResponse.getBentenSlackResponse().getSlackText());
+        Assert.assertNotNull(bentenHandlerResponse.getBentenSlackResponse());
+        Assert.assertNotNull(bentenHandlerResponse.getBentenSlackResponse().getSlackText());
     }
 
     @Test
@@ -71,8 +71,10 @@ public class SplunkUserLogsActionHandlerTest {
         try {
             String applicationId = splunkUserLogsActionHandler.getApplicationId(authCode);
             Assert.assertEquals(applicationId, expectedApplicationId);
+
+            //debug statement
             System.out.println("Application id = " + applicationId);
-        } catch (JSONException | IOException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -99,11 +101,13 @@ public class SplunkUserLogsActionHandlerTest {
         JSONArray jsonArray = null;
         try {
             jsonArray = splunkUserLogsActionHandler.convertArrayListToJson(listOfTransactions);
-            System.out.println("JSON Array : " + jsonArray);
 
+            //debug statement
+            System.out.println("JSON Array : " + jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Assert.assertNotNull(jsonArray);
         Assert.assertEquals(jsonArray.length(), 3);
     }
@@ -118,8 +122,10 @@ public class SplunkUserLogsActionHandlerTest {
         String response = splunkUserLogsActionHandler.buildMessageHelper(transaction, key, additionalText);
         String expectedResponse = "*" + additionalText + "*" + " `" + transaction.get(key) + "`\n";
 
+        //debug statements
         System.out.println("Received Response = " + response);
         System.out.println("Expected Response = " + expectedResponse);
+
         Assert.assertEquals(response, expectedResponse);
     }
 
@@ -135,14 +141,15 @@ public class SplunkUserLogsActionHandlerTest {
         String response = splunkUserLogsActionHandler.buildMessageHelper(transaction, key, preText, postText);
         String expectedResponse = preText + " `" + transaction.get(key) + "` " + postText + "\n";
 
+        //debug statements
         System.out.println("Received Response = " + response);
         System.out.println("Expected Response = " + expectedResponse);
+
         Assert.assertEquals(response, expectedResponse);
     }
 
     @Test
     public void testGenerateMeaningfulInfo() {
-        //TODO
         ArrayList<HashMap<String, String>> listOfTransactions;
         Gson gson = new Gson();
         JsonParser jsonParser = new JsonParser();
@@ -150,12 +157,12 @@ public class SplunkUserLogsActionHandlerTest {
             BufferedReader br = new BufferedReader(new FileReader("/Users/asingh63/Downloads/work/benten-build/benten/benten-splunk-bolt/src/test/java/com/intuit/benten/splunk/list-of-transactions.json"));
             JsonElement jsonElement = jsonParser.parse(br);
 
-            //Create generic type
             Type type = new TypeToken<List<HashMap>>() {
             }.getType();
             listOfTransactions = gson.fromJson(jsonElement, type);
             BentenSlackResponse bentenSlackResponse = splunkUserLogsActionHandler.generateMeaningfulInfo(listOfTransactions);
 
+            //debug statements
             System.out.println(bentenSlackResponse.getSlackText());
 
             Assert.assertNotNull(bentenSlackResponse);
@@ -164,6 +171,4 @@ public class SplunkUserLogsActionHandlerTest {
             e.printStackTrace();
         }
     }
-
-
 }

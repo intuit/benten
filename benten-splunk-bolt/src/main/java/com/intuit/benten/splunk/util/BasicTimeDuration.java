@@ -4,7 +4,7 @@ public class BasicTimeDuration {
     private int val;
     private String unit;
 
-    public BasicTimeDuration(){
+    public BasicTimeDuration() {
         this.val = 4;
         this.unit = "h";
     }

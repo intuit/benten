@@ -45,7 +45,9 @@ public class SplunkHelpActionHandlerTest {
         JsonElement jsonElement = new JsonPrimitive(helpResponse);
         BentenHandlerResponse bentenHandlerResponse = splunkHelpActionHandler.handle(MessageBuilder.constructSplunkHelpActionMessage(jsonElement));
 
+        //debug statement
         System.out.println(bentenHandlerResponse.getBentenSlackResponse().getSlackText());
+
         Assert.assertNotNull(bentenHandlerResponse.getBentenSlackResponse());
         Assert.assertNotNull(bentenHandlerResponse.getBentenSlackResponse().getSlackText());
     }
