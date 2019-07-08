@@ -1,4 +1,4 @@
-package com.intuit.benten.splunk;
+package com.intuit.benten.splunk.helpers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

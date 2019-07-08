@@ -22,7 +22,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +35,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
     private static final String GET_URL_FOR_APPLICATION_ID = "http://localhost:8080/get_token?auth_code=";
     private static final String JSON_FILE_PATH = "/Users/asingh63/Downloads/work/benten-build/benten/benten-splunk-bolt/src/test/java/com/intuit/benten/splunk/list-of-transactions.json";
     private static SlackFormatter slackFormatter = SlackFormatter.create();
+
     @Autowired
     SplunkHttpClient splunkHttpClient = new SplunkHttpClient();
 
@@ -57,8 +57,8 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
         try {
             ArrayList<HashMap<String, String>> listOfTransactions = splunkHttpClient.runQuery(applicationId);
             Collections.reverse(listOfTransactions);
+            System.out.println("Length of all transactions = " + listOfTransactions.size());
 
-            System.out.println(listOfTransactions.toString());
             convertArrayListToJson(listOfTransactions);
             bentenSlackResponse = generateMeaningfulInfo(listOfTransactions);
             bentenHandlerResponse.setBentenSlackResponse(bentenSlackResponse);
@@ -203,7 +203,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
 
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.set("Accept", "application/json");
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost").port(8089)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost").port(8080)
                 .path("/get_token")
                 .queryParam("auth_code", authCode);
         HttpEntity<?> httpEntity = new HttpEntity<Object>(requestHeaders);
@@ -216,37 +216,6 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
         String appId = jsonObject.getString("app_id");
 
         return appId;
-
-        //FALLBACK CODE BELOW
-//        String url = GET_URL_FOR_APPLICATION_ID + authCode;
-//        URL obj = new URL(url);
-//        String applicationId = "";
-//        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//        con.setRequestMethod("GET");
-//
-//        int responseCode = con.getResponseCode();
-//        if (responseCode == HttpURLConnection.HTTP_OK) {
-//            BufferedReader in = new BufferedReader(new InputStreamReader(
-//                    con.getInputStream()));
-//            String inputLine;
-//            StringBuilder response = new StringBuilder();
-//
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//
-//            try {
-//                JSONObject jsonObject = new JSONObject(response.toString());
-//                applicationId = jsonObject.getString("app_id");
-//            } catch (JSONException e) {
-//                logger.error(e.getMessage());
-//            }
-//            logger.debug("Application id : " + applicationId);
-//        } else {
-//            logger.error("Status code - " + responseCode);
-//        }
-//        return applicationId;
     }
 
     public String buildMessageHelper(HashMap<String, String> transaction, String key, String additionalText) {
@@ -267,23 +236,6 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
             message = "";
         }
         return message;
-    }
-
-    private void buildSlackResponse(BentenSlackResponse bentenSlackResponse, ArrayList<HashMap<String, String>> listOfTransactions) {
-        StringBuilder transactionsIds = new StringBuilder();
-        System.out.println("The size of listOfTransactions is " + listOfTransactions.size());
-        for (HashMap<String, String> event : listOfTransactions) {
-            System.out.println("tid= " + event.get("tid"));
-            transactionsIds
-                    .append(event.get("tid"))
-                    .append("\n");
-        }
-        SlackFormatter slackFormatter = SlackFormatter.create();
-
-        bentenSlackResponse.setSlackText(slackFormatter
-                .text("The available transaction id's are: \n")
-                .text(transactionsIds.toString())
-                .build());
     }
 
     private void buildSlackResponse(StringBuilder response) {

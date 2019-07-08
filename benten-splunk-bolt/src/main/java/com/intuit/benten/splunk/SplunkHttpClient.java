@@ -104,7 +104,8 @@ public class SplunkHttpClient {
                 .replaceAll("\" ", "\", \"")
                 .replaceAll("\"token\":", "\"token\":\"")
                 .replaceAll(" tid\"", "\", \"tid\"")
-                .replaceAll("\\n", "");
+                .replaceAll("\\n", "")
+                .replace("\\", "\\\\");
         userInfo = "{\"" + userInfo + "}";
         return userInfo;
     }
