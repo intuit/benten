@@ -38,7 +38,7 @@ public class SplunkHttpClient {
         ServiceArgs loginArgs = new ServiceArgs();
         loginArgs.setUsername(splunkProperties.getUsername());
         loginArgs.setPassword(splunkProperties.getPassword());
-        loginArgs.setHost("hostname");
+        loginArgs.setHost("oprdptghd302");
         loginArgs.setPort(8089);
         loginArgs.setScheme("https");
 
