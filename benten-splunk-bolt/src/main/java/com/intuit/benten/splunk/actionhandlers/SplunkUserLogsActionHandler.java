@@ -22,7 +22,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,10 +31,9 @@ import java.util.HashMap;
 @Component
 @ActionHandler(action = SplunkActions.ACTION_GET_USER_INFO)
 public class SplunkUserLogsActionHandler implements BentenActionHandler {
-
     private static final Logger logger = LoggerFactory.getLogger(SplunkUserLogsActionHandler.class);
-    private static final String GET_URL_FOR_APPLICATION_ID = "http://localhost:8080/get_token?auth_code=";
     private static final String JSON_FILE_PATH = "/Users/asingh63/Downloads/work/benten-build/benten/benten-splunk-bolt/src/test/java/com/intuit/benten/splunk/list-of-transactions.json";
+    private static final String NO_LOGS_MESSAGE = "Sorry, no logs are available";
     private static SlackFormatter slackFormatter = SlackFormatter.create();
 
     @Autowired
@@ -45,7 +43,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
     public BentenHandlerResponse handle(BentenMessage bentenMessage) {
 
         BentenHandlerResponse bentenHandlerResponse = new BentenHandlerResponse();
-        BentenSlackResponse bentenSlackResponse;
+        BentenSlackResponse bentenSlackResponse = new BentenSlackResponse();
 
         String authCode = BentenMessageHelper.getParameterAsString(bentenMessage, SplunkActionParameters.PARAMETER_AUTHORISATION_CODE);
         String applicationId = null;
@@ -57,6 +55,11 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
 
         try {
             ArrayList<HashMap<String, String>> listOfTransactions = splunkHttpClient.runQuery(applicationId);
+            if(listOfTransactions.isEmpty()){
+                bentenSlackResponse.setSlackText(NO_LOGS_MESSAGE);
+                bentenHandlerResponse.setBentenSlackResponse(bentenSlackResponse);
+                return bentenHandlerResponse;
+            }
             Collections.reverse(listOfTransactions);
             System.out.println("Length of all transactions = " + listOfTransactions.size());
 
