@@ -22,6 +22,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
 
         try {
             ArrayList<HashMap<String, String>> listOfTransactions = splunkHttpClient.runQuery(applicationId);
-            if(listOfTransactions.isEmpty()){
+            if (listOfTransactions.isEmpty()) {
                 bentenSlackResponse.setSlackText(NO_LOGS_MESSAGE);
                 bentenHandlerResponse.setBentenSlackResponse(bentenSlackResponse);
                 return bentenHandlerResponse;
@@ -91,61 +92,44 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
         for (HashMap<String, String> transaction : listOfTransactions) {
             String message = transaction.get("message");
             String messageInfo = buildMessageHelper(transaction, "message", "Message -");
+            StringBuilder info = new StringBuilder();
 
             switch (message) {
                 case "inputdetailinfo": {
-
-                    StringBuilder inputDetailInfo = new StringBuilder();
-                    inputDetailInfo
-                            .append(messageInfo)
+                    info.append(messageInfo)
                             .append(buildMessageHelper(transaction, "action", "User performed an action to get the following info -"))
                             .append(buildMessageHelper(transaction, "taxmodule", "for the tax module"));
-
-                    buildSlackResponse(inputDetailInfo);
                 }
                 break;
                 case "forminfo": {
-
-                    StringBuilder formInfo = new StringBuilder();
-                    formInfo.append(messageInfo)
+                    info.append(messageInfo)
                             .append(buildMessageHelper(transaction, "taxformname", "User asked for the info about the following form -"));
 
-                    buildSlackResponse(formInfo);
                 }
                 break;
                 case "diagnosticsinfo": {
-
-                    StringBuilder diagnosticsInfo = new StringBuilder();
-                    diagnosticsInfo.append(messageInfo)
+                    info.append(messageInfo)
                             .append(buildMessageHelper(transaction, "formname", "Concerned formname -"))
                             .append(buildMessageHelper(transaction, "state", "for the state -"))
                             .append(buildMessageHelper(transaction, "information", "Information about possible issues -"))
                             .append(buildMessageHelper(transaction, "critical", "Possible critical issues which need to be fixed -"))
                             .append(buildMessageHelper(transaction, "fatal", "Possible fatal issues which need to be fixed -"))
                             .append(buildMessageHelper(transaction, "efrejection", "possible reasons for e-file rejection -"));
-
-                    buildSlackResponse(diagnosticsInfo);
                 }
                 break;
                 case "menuclickinfo": {
-
-                    StringBuilder menuClickInfo = new StringBuilder();
-                    menuClickInfo.append(messageInfo)
+                    info.append(messageInfo)
                             .append(buildMessageHelper(transaction, "action", "Menu clicked -"))
                             .append(buildMessageHelper(transaction, "taxmodule", "for", "tax module"));
 
-                    buildSlackResponse(menuClickInfo);
                 }
                 break;
                 case "printinfo": {
-
-                    StringBuilder printInfo = new StringBuilder();
-                    printInfo.append(messageInfo)
+                    info.append(messageInfo)
                             .append(buildMessageHelper(transaction, "forms", "Request for printing the following forms was generated -"))
                             .append(buildMessageHelper(transaction, "printtiggeredfrom", "The print command got triggered from -"))
                             .append(buildMessageHelper(transaction, "trigerredfrom", "The print command got triggered from -"));
 
-                    buildSlackResponse(printInfo);
                 }
                 break;
                 case "antivirusinfo": {
@@ -161,11 +145,9 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
                 }
                 break;
                 case "efileinfo": {
-                    StringBuilder efileInfo = new StringBuilder();
-                    efileInfo.append(messageInfo)
+                    info.append(messageInfo)
                             .append(buildMessageHelper(transaction, "status", "The status of the e filing is -"))
                             .append(buildMessageHelper(transaction, "taxtype", "for", "tax type"));
-                    buildSlackResponse(efileInfo);
                 }
                 break;
                 case "dmsfilesizeinfo": {
@@ -193,6 +175,7 @@ public class SplunkUserLogsActionHandler implements BentenActionHandler {
                 }
                 break;
             }
+            buildSlackResponse(info);
         }
 
         BentenSlackResponse bentenSlackResponse = new BentenSlackResponse();
