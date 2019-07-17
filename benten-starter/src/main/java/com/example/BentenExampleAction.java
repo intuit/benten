@@ -29,7 +29,7 @@ public class BentenExampleAction implements BentenActionHandler {
     public BentenHandlerResponse handle(BentenMessage bentenMessage) {
 
         String application = BentenMessageHelper.getParameterAsString(bentenMessage, "application");
-        Integer noOfPings = BentenMessageHelper.getParameterAsInteger(bentenMessage, "noOfTimes");
+        Integer noOfPings = BentenMessageHelper.getParameterAsInteger(bentenMessage, "noOfPing");
 
         BentenHandlerResponse bentenHandlerResponse = new BentenHandlerResponse();
         BentenSlackResponse bentenSlackResponse = new BentenSlackResponse();
