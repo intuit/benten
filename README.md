@@ -37,20 +37,6 @@ If you're wondering why the name BenTen, you can find an answer here [Why the na
 |Details of Jenkins job  |```details of jenkins job```, ```details of jenkins job Purchase-Service-Release```  |
 |Build Jenkins job  |```build jenkins job Purchase-Service-Release```  |
 
-## Try it out!
-Before moving forward just experience the awesomeness of BenTen for yourself! Just follow the below link to sign up.
-
-[Join Benten Slack](https://join.slack.com/t/bentenapp/shared_invite/enQtMzg3MTkwNjc1MDkxLWI2ZDkzZjVhNTk2ZThlMjRhNTg3ZTc5OGExYTk1MGZkYTQ3Yzg3NzAzYWQyYzM5ZThiMGE2Mjk2OGZlOWUzYzk)
-
-After signing up click on the below link which opens up the benten bot in slack. Type `help` and that should guide you.
-My recommendation is to try `Create Jira Story` to see the conversational power and then `my issues`
-
-[Open BenTen Bot](https://bentenapp.slack.com/messages/DAVB8E2KB/)
-
-**_Note:_** The above bot runs against `jira and jenkins mocks` that are written using [Karate Test Doubles.](https://hackernoon.com/api-consumer-contract-tests-and-test-doubles-with-karate-72c30ea25c18)
-
-<img src="https://github.com/DivakarUngatla/divakarungatla.github.io/blob/master/benten/open-benten.gif?raw=true" width=800 />
-
 ## Let's set up BenTen
 Now that you have experienced the bot, let us set up BenTen with your `own` slack bot and run against your Jira and Jenkins.
 
