@@ -38,6 +38,9 @@ public class BentenMessage {
     }
 
     public HashMap<String, JsonElement> getParameters() {
+        if (null == parameters) {
+            parameters = new HashMap<>();
+        }
         return parameters;
     }
 
