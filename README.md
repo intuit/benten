@@ -37,6 +37,12 @@ If you're wondering why the name BenTen, you can find an answer here [Why the na
 |Details of Jenkins job  |```details of jenkins job```, ```details of jenkins job Purchase-Service-Release```  |
 |Build Jenkins job  |```build jenkins job Purchase-Service-Release```  |
 
+|Flickr Feature|Command  |
+|--|--|
+|Search for Photos or Videos  |```flickr 5 photos of cats```, ```flickr videos of dogs```  |
+|Search Trendy Photos  |```flickr trendy photos```, ```flickr popular photos```  |
+|Search Camera Brands  |```flickr canon cameras```  |
+
 ## Let's set up BenTen
 Now that you have experienced the bot, let us set up BenTen with your `own` slack bot and run against your Jira and Jenkins.
 
@@ -68,7 +74,7 @@ mvn clean install -Dmaven.test.skip=true
     <version>0.1.5</version>
 </dependency>
 ```
-#### Include Jira and Jenkins bolts
+#### Include Jira, Jenkins and Flickr bolts
 
 ```xml
 <dependency>
@@ -79,6 +85,11 @@ mvn clean install -Dmaven.test.skip=true
 <dependency>
     <groupId>com.intuit.benten</groupId>
     <artifactId>benten-jenkins-bolt</artifactId>
+    <version>0.1.5</version>
+</dependency>
+<dependency>
+    <groupId>com.intuit.benten</groupId>
+    <artifactId>benten-flickr-bolt</artifactId>
     <version>0.1.5</version>
 </dependency>
 ```
@@ -180,6 +191,18 @@ mvn clean install -Dmaven.test.skip=true
 mvn spring-boot:run
 ```
 Type `jenkins` in your bot and try any of the operations to see them work against your jenkins.
+
+## Point BenTen to your own Flickr instance
+
+Make changes for Flickr in `benten.properties`.
+
+```sh
+cd benten-starter
+vi src/main/resources/benten.properties
+```
+[Generate your Flickr API key and secret key](https://www.flickr.com/services/api/keys/)
+
+In line #25,26 change `benten.flickr.apikey` and `benten.flickr.secret` accordingly. BenTen uses these keys to connect to the Flickr API. Save the changes.
 
 ## Let's get to Action! (Adding a new ActionHandler)
 
