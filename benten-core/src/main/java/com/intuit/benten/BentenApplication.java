@@ -1,7 +1,7 @@
 package com.intuit.benten;
 
-import com.intuit.benten.properties.BentenProxyConfig;
-import com.intuit.benten.properties.AiProperties;
+import com.intuit.benten.hackernews.properties.BentenProxyConfig;
+import com.intuit.benten.hackernews.properties.AiProperties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,4 +1,4 @@
-package com.intuit.benten.exceptions;
+package com.intuit.benten.hackernews.exceptions;
 
 /**
  * @author Divakar Ungatla

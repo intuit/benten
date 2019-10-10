@@ -72,7 +72,11 @@
             <artifactId>benten-jenkins-bolt</artifactId>
             <version>${benten.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.intuit.benten</groupId>
+            <artifactId>benten-hackernews-bolt</artifactId>
+            <version>${benten.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

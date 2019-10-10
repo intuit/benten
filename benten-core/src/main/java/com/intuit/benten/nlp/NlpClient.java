@@ -1,7 +1,7 @@
 package com.intuit.benten.nlp;
 
 import com.intuit.benten.common.nlp.BentenMessage;
-import com.intuit.benten.exceptions.AiException;
+import com.intuit.benten.hackernews.exceptions.AiException;
 
 /**
  * @author Divakar Ungatla

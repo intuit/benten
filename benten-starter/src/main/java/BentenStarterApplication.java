@@ -2,8 +2,8 @@
 import com.intuit.benten.mock.MockFeatureServerRunner;
 import com.intuit.benten.nlp.NlpClient;
 import com.intuit.benten.nlp.dialogflow.DialogFlowClient;
-import com.intuit.benten.properties.AiProperties;
-import com.intuit.benten.properties.BentenProxyConfig;
+import com.intuit.benten.hackernews.properties.AiProperties;
+import com.intuit.benten.hackernews.properties.BentenProxyConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

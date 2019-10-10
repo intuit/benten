@@ -1,6 +1,6 @@
 package com.intuit.benten.converters;
 
-import com.intuit.benten.exceptions.ImageGenerationException;
+import com.intuit.benten.hackernews.exceptions.ImageGenerationException;
 import gui.ava.html.image.generator.HtmlImageGenerator;
 import org.springframework.stereotype.Component;
 

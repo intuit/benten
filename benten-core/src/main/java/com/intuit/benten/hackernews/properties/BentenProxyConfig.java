@@ -1,4 +1,4 @@
-package com.intuit.benten.properties;
+package com.intuit.benten.hackernews.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -56,6 +56,6 @@ public class BentenProxyConfig {
     public void setProtocol(String protocol) {
         this.protocol = protocol;
     }
-    
+
 }
 

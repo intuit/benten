@@ -1,0 +1,14 @@
+package com.intuit.benten.hackernews.actionhandlers;
+
+/**
+ * Created by jleveroni on 10/09/2019
+ */
+public class HackernewsActions {
+    public static final String ACTION_HACKERNEWS_GET_TOP_STORIES = "ACTION_HACKERNEWS_GET_TOP_STORIES";
+    public static final String ACTION_HACKERNEWS_GET_NEW_STORIES = "ACTION_HACKERNEWS_GET_NEW_STORIES";
+    public static final String ACTION_HACKERNEWS_GET_BEST_STORIES = "ACTION_HACKERNEWS_GET_BEST_STORIES";
+    public static final String ACTION_HACKERNEWS_GET_LATEST_ASKS = "ACTION_HACKERNEWS_GET_LATEST_ASKS";
+    public static final String ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES = "ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES";
+    public static final String ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES = "ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES";
+    public static final String ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID = "ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID";
+}

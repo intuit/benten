@@ -36,6 +36,7 @@
         <module>benten-jira-bolt</module>
         <module>benten-core</module>
         <module>benten-jenkins-bolt</module>
+        <module>benten-hackernews-bolt</module>
         <module>benten-mock</module>
         <module>benten-archetype</module>
         <module>benten-examples</module>
@@ -47,7 +48,7 @@
         <junit.version>4.12</junit.version>
         <karate.version>0.8.0.RC3</karate.version>
         <nexus.staging.plugin.version>1.6.7</nexus.staging.plugin.version>
-    </properties>    
+    </properties>
 
     <dependencies>
         <dependency>
@@ -77,7 +78,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <version>${spring.version}</version>
             <optional>true</optional>
-        </dependency>        
+        </dependency>
     </dependencies>
 
     <build>
