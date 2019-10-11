@@ -31,7 +31,7 @@ In the benten.properties file you need to be sure that the following properties 
 ## Actions
 This bolt exposes the following actions that can be triggered via DialogFlow Intents.
 
-#### Get Top Stories
+### Get Top Stories
 **Action Name:** action_hackernews_get_top_stories
 
 **Parameters:**
@@ -41,7 +41,7 @@ This bolt exposes the following actions that can be triggered via DialogFlow Int
 
 **Result:** A list of stories rendered in a slack response message.
 
-#### Get New Stories
+### Get New Stories
 **Action Name:** action_hackernews_get_new_stories
 
 **Parameters:**
@@ -50,7 +50,7 @@ This bolt exposes the following actions that can be triggered via DialogFlow Int
 
 **Result:** A list of stories rendered in a slack response message.
 
-#### Get Best Stories
+### Get Best Stories
 **Action Name:** action_hackernews_get_best_stories
 
 **Parameters:**
@@ -59,7 +59,7 @@ This bolt exposes the following actions that can be triggered via DialogFlow Int
 
 **Result:** A list of stories rendered in a slack response message.
 
-#### Get Latest Asks
+### Get Latest Asks
 **Action Name:** action_hackernews_latest_asks
 
 **Parameters:**
@@ -68,7 +68,7 @@ This bolt exposes the following actions that can be triggered via DialogFlow Int
 
 **Result:** A list of stories rendered in a slack response message.
 
-#### Get Latest Show Stories
+### Get Latest Show Stories
 **Action Name:** action_hackernews_get_latest_show_stories
 
 **Parameters:**
@@ -77,7 +77,7 @@ This bolt exposes the following actions that can be triggered via DialogFlow Int
 
 **Result:** A list of stories rendered in a slack response message.
 
-#### Get Latest Job Stories
+### Get Latest Job Stories
 **Action Name:** action_hackernews_get_latest_job_stories
 
 **Parameters:**
