@@ -17,9 +17,15 @@ public class SlackHackerNewsMessageRenderer {
 
         for (HackernewsItem story : stories) {
             slackFormatter.bold(story.getTitle())
-                .italic(" | By: " + story.getBy() + " | ")
-                .link(story.getUrl(), "View article")
-                .newline();
+                .italic("| By:").italic(story.getBy()).italic("|").text(" ");
+
+            if (story.getUrl() == null) {
+                slackFormatter.link(
+                        HackernewsConstants.ApiEndpoints.HACKERNEWS_ITEM_URL + story.getId(),
+                        "View article").newline();
+            } else {
+                slackFormatter.link(story.getUrl(), "View article").newline();
+            }
         }
 
         bentenSlackResponse.setSlackText(slackFormatter.build());
@@ -30,14 +36,21 @@ public class SlackHackerNewsMessageRenderer {
         BentenSlackResponse bentenSlackResponse= new BentenSlackResponse();
         SlackFormatter slackFormatter = SlackFormatter.create();
 
-        bentenSlackResponse.setSlackText(slackFormatter
-                .text("Here's what I was able to dig up:").newline()
+        slackFormatter.text("Here's what I was able to dig up:").newline()
                 .bold(story.getTitle()).newline()
                 .text(story.getText()).newline()
-                .italic(" | By: ").italic(story.getBy())
-                .italic(" | Score: ").italic(story.getScore().toString()).newline()
-                .link(story.getUrl(), "View article").build());
+                .italic("| By:").italic(story.getBy())
+                .italic("| Score:").italic(story.getScore().toString()).newline();
 
+        if (story.getUrl() == null) {
+            slackFormatter.link(
+                    HackernewsConstants.ApiEndpoints.HACKERNEWS_ITEM_URL + story.getId(),
+                    "View article").newline();
+        } else {
+            slackFormatter.link(story.getUrl(), "View article").newline();
+        }
+
+        bentenSlackResponse.setSlackText(slackFormatter.build());
         return bentenSlackResponse;
     }
 }

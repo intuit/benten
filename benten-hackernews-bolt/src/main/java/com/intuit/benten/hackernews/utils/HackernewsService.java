@@ -36,9 +36,8 @@ public class HackernewsService {
 
     public List<HackernewsItem> fetchHackerNewsContent(String actionName, Integer limit, Integer offset) {
         return requestItemIds(
-                HackernewsConstants.fromActionName(actionName),
-                limit,
-                offset);
+                HackernewsConstants.ApiEndpoints.fromActionName(actionName),
+                limit, offset);
     }
 
     private List<HackernewsItem> requestItemIds(String endpoint, Integer limit, Integer offset) throws BentenHackernewsException {

@@ -19,6 +19,28 @@ public class HackernewsConstants {
         public static final String ITEM = "item";
         public static final String PRETTY_PRINT = "?print=pretty";
         public static final String JSON = ".json";
+        public static final String HACKERNEWS_ITEM_URL = "https://news.ycombinator.com/item?id=";
+
+        public static String fromActionName(String name) {
+            switch(name) {
+                case HackernewsActions.ACTION_HACKERNEWS_GET_TOP_STORIES:
+                    return HackernewsConstants.ApiEndpoints.TOP_STORIES;
+                case HackernewsActions.ACTION_HACKERNEWS_GET_NEW_STORIES:
+                    return HackernewsConstants.ApiEndpoints.NEW_STORIES;
+                case HackernewsActions.ACTION_HACKERNEWS_GET_BEST_STORIES:
+                    return HackernewsConstants.ApiEndpoints.BEST_STORIES;
+                case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_ASKS:
+                    return HackernewsConstants.ApiEndpoints.LATEST_ASKS;
+                case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES:
+                    return HackernewsConstants.ApiEndpoints.LATEST_SHOW;
+                case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES:
+                    return HackernewsConstants.ApiEndpoints.LATEST_JOB;
+                case HackernewsActions.ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID:
+                    return HackernewsConstants.ApiEndpoints.MAX_ITEM;
+                default:
+                    throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.INVALID_ACTION_NAME + name);
+            }
+        }
     }
 
     public static class ErrorMessages {
@@ -38,26 +60,5 @@ public class HackernewsConstants {
         public static final String ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES = "action_hackernews_get_latest_show_stories";
         public static final String ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES = "action_hackernews_get_latest_job_stories";
         public static final String ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID = "action_hackernews_newest_content_id";
-    }
-
-    public static String fromActionName(String name) {
-        switch(name) {
-            case HackernewsActions.ACTION_HACKERNEWS_GET_TOP_STORIES:
-                return HackernewsConstants.ApiEndpoints.TOP_STORIES;
-            case HackernewsActions.ACTION_HACKERNEWS_GET_NEW_STORIES:
-                return HackernewsConstants.ApiEndpoints.NEW_STORIES;
-            case HackernewsActions.ACTION_HACKERNEWS_GET_BEST_STORIES:
-                return HackernewsConstants.ApiEndpoints.BEST_STORIES;
-            case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_ASKS:
-                return HackernewsConstants.ApiEndpoints.LATEST_ASKS;
-            case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES:
-                return HackernewsConstants.ApiEndpoints.LATEST_SHOW;
-            case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES:
-                return HackernewsConstants.ApiEndpoints.LATEST_JOB;
-            case HackernewsActions.ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID:
-                return HackernewsConstants.ApiEndpoints.MAX_ITEM;
-            default:
-                throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.INVALID_ACTION_NAME + name);
-        }
     }
 }
