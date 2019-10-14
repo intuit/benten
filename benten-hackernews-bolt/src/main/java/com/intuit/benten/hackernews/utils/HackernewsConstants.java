@@ -23,19 +23,19 @@ public class HackernewsConstants {
 
         public static String fromActionName(String name) {
             switch(name) {
-                case HackernewsActions.ACTION_HACKERNEWS_GET_TOP_STORIES:
+                case Actions.ACTION_HACKERNEWS_GET_TOP_STORIES:
                     return HackernewsConstants.ApiEndpoints.TOP_STORIES;
-                case HackernewsActions.ACTION_HACKERNEWS_GET_NEW_STORIES:
+                case Actions.ACTION_HACKERNEWS_GET_NEW_STORIES:
                     return HackernewsConstants.ApiEndpoints.NEW_STORIES;
-                case HackernewsActions.ACTION_HACKERNEWS_GET_BEST_STORIES:
+                case Actions.ACTION_HACKERNEWS_GET_BEST_STORIES:
                     return HackernewsConstants.ApiEndpoints.BEST_STORIES;
-                case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_ASKS:
+                case Actions.ACTION_HACKERNEWS_GET_LATEST_ASKS:
                     return HackernewsConstants.ApiEndpoints.LATEST_ASKS;
-                case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES:
+                case Actions.ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES:
                     return HackernewsConstants.ApiEndpoints.LATEST_SHOW;
-                case HackernewsActions.ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES:
+                case Actions.ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES:
                     return HackernewsConstants.ApiEndpoints.LATEST_JOB;
-                case HackernewsActions.ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID:
+                case Actions.ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID:
                     return HackernewsConstants.ApiEndpoints.MAX_ITEM;
                 default:
                     throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.INVALID_ACTION_NAME + name);
@@ -52,7 +52,7 @@ public class HackernewsConstants {
         public static final String ITEM_REQUEST_FAILED = "Item Call failed: ";
     }
 
-    public static class HackernewsActions {
+    public static class Actions {
         public static final String ACTION_HACKERNEWS_GET_TOP_STORIES = "action_hackernews_get_top_stories";
         public static final String ACTION_HACKERNEWS_GET_NEW_STORIES = "action_hackernews_get_new_stories";
         public static final String ACTION_HACKERNEWS_GET_BEST_STORIES = "action_hackernews_get_best_stories";
@@ -60,5 +60,10 @@ public class HackernewsConstants {
         public static final String ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES = "action_hackernews_get_latest_show_stories";
         public static final String ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES = "action_hackernews_get_latest_job_stories";
         public static final String ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID = "action_hackernews_newest_content_id";
+    }
+
+    public static class Parameters {
+        public static final String LIMIT = "limit";
+        public static final String OFFSET = "offset";
     }
 }

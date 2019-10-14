@@ -1,7 +1,9 @@
 package com.intuit.benten.hackernews.utils;
 
+import com.intuit.benten.common.actionhandlers.BentenHandlerResponse;
 import com.intuit.benten.common.actionhandlers.BentenSlackResponse;
 import com.intuit.benten.common.formatters.SlackFormatter;
+import com.intuit.benten.hackernews.exceptions.BentenHackernewsException;
 import com.intuit.benten.hackernews.model.HackernewsItem;
 
 import java.util.List;
@@ -50,6 +52,16 @@ public class SlackHackerNewsMessageRenderer {
             slackFormatter.link(story.getUrl(), "View article").newline();
         }
 
+        bentenSlackResponse.setSlackText(slackFormatter.build());
+        return bentenSlackResponse;
+    }
+
+    public static BentenSlackResponse renderError(String action, BentenHackernewsException e) {
+        BentenSlackResponse bentenSlackResponse= new BentenSlackResponse();
+        SlackFormatter slackFormatter = SlackFormatter.create();
+
+        slackFormatter.bold("An error occurred processing the ").text(action).text("action");
+        slackFormatter.text("Error description: ").text(e.getMessage());
         bentenSlackResponse.setSlackText(slackFormatter.build());
         return bentenSlackResponse;
     }

@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -34,13 +33,15 @@ public class HackernewsService {
     @Autowired
     private HackernewsExecutorService hackernewsExecutorService;
 
-    public List<HackernewsItem> fetchHackerNewsContent(String actionName, Integer limit, Integer offset) {
-        return requestItemIds(
-                HackernewsConstants.ApiEndpoints.fromActionName(actionName),
-                limit, offset);
+    public List<HackernewsItem> fetchHackernewsContent(String actionName, Integer limit, Integer offset) throws BentenHackernewsException {
+        return requestItemIds(HackernewsConstants.ApiEndpoints.fromActionName(actionName), limit, offset);
     }
 
     private List<HackernewsItem> requestItemIds(String endpoint, Integer limit, Integer offset) throws BentenHackernewsException {
+        if (!validateInitialParameters(limit, offset)) {
+            throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.NEGATIVE_LIMIT_OR_OFFSET);
+        }
+
         String uri = buildHackernewsRequestUrl(endpoint);
         HttpGet req = new HttpGet(uri);
 
@@ -48,7 +49,8 @@ public class HackernewsService {
             HttpResponse res = httpHelper.getClient().execute(req);
 
             if (res.getStatusLine().getStatusCode() != 200) {
-                handleFailedHackerNewsRequest(res);
+                String message = "Response code " + res.getStatusLine().getStatusCode();
+                throw new BentenHackernewsException(message);
             }
 
             String json = EntityUtils.toString(res.getEntity());
@@ -56,7 +58,7 @@ public class HackernewsService {
             List<HackernewsItem> items = fetchHackerNewsItems(hackerNewsItemIds);
             return items;
         } catch (IOException e) {
-            throw new BentenHackernewsException(e.getMessage());
+            throw new BentenHackernewsException("requestItemIds result could not be handled", e.getMessage());
         }
     }
 
@@ -92,10 +94,6 @@ public class HackernewsService {
         Integer startIndex = limit * offset;
         int stopIndex = startIndex + limit - 1;
 
-        if (limit < 0 || offset < 0) {
-            throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.NEGATIVE_LIMIT_OR_OFFSET);
-        }
-
         if (limit == 0 && offset == 0) {
             throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.ACTION_LIMIT_AND_OFFSET_ZERO);
         }
@@ -116,14 +114,22 @@ public class HackernewsService {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    private boolean validateInitialParameters(Integer limit, Integer offset) throws BentenHackernewsException {
+        if (limit != null && 0 > limit) {
+            return false;
+        }
+
+        if (offset != null && 0 > offset) {
+            return false;
+        }
+
+        return true;
+    }
+
     private List<HackernewsItem> fetchHackerNewsItems(List<Integer> itemIds) {
         List<FetchHackernewsItemTask> tasks = itemIds.stream()
             .map(x -> new FetchHackernewsItemTask(hackernewsProperties.getUrlWithApiVersion(), x))
             .collect(Collectors.toList());
         return hackernewsExecutorService.submitFetchHackernewsItemTasks(tasks);
-    }
-
-    private void handleFailedHackerNewsRequest(HttpResponse response) {
-        throw new NotImplementedException();
     }
 }

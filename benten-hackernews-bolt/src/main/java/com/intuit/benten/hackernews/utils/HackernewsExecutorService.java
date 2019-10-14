@@ -4,16 +4,14 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intuit.benten.hackernews.exceptions.BentenHackernewsException;
 import com.intuit.benten.hackernews.model.HackernewsItem;
-import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
-import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
+import org.apache.http.HttpResponse;
+import java.util.concurrent.Future;
+import java.util.concurrent.ExecutorService;
+import java.util.List;
 
 @Component
 public class HackernewsExecutorService {

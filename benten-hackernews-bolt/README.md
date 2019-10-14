@@ -6,6 +6,17 @@ is a little unusual when it comes to standard apis. The data that Hackernews exp
 a dump of their in-memory data structures into a firebase firestore database, more info 
 [here](https://github.com/HackerNews/API).
 
+## Local Development
+To build and run with the Hackernews Bolt active, go through the DialogFlow and Slack setup make sure you have an active benten slack bot running.
+Then run the following commands.
+ 
+1. `cd ~/dev/benten/hackernews-bolt;`
+2. `mvn install:install-file -Dfile=/Users/jleveroni/dev/benten/benten-hackernews-bolt/target/benten-hackernews-bolt-0.1.5.jar -DgroupId=benten-hackernews-bolt -DartifactId=benten-hackernews-bolt -Dversion=0.1.5 -Dpackaging=jar -DgeneratePom=true;`
+3. `mvn clean install -Dmaven.test.skip=true;`
+4. `cd ~/dev/benten/benten-starter;`
+5. `mvn clean install -Dmaven.test.skip=true`
+6. `mvn spring-boot:run;`
+
 ## Setup
 To add the hackernews bolt to your project add the following to your pom file under the <dependencies> tag:
 

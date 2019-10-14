@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * Created by jleveroni on 10/09/2019
  */
 @Component
-@ActionHandler(action = HackernewsConstants.HackernewsActions.ACTION_HACKERNEWS_GET_TOP_STORIES)
+@ActionHandler(action = HackernewsConstants.Actions.ACTION_HACKERNEWS_GET_TOP_STORIES)
 public class HackernewsGetTopStoriesActionHandler extends BaseHackernewsGetCollectionAction implements BentenActionHandler {
 
 }
