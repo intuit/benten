@@ -8,6 +8,7 @@ import com.intuit.benten.properties.AiProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import com.intuit.benten.exceptions.AiException;
 import java.util.HashMap;
 
 /**
@@ -24,12 +25,12 @@ public class DialogFlowClient implements NlpClient {
     }
 
     @Override
-    public BentenMessage sendText(String text, String sessionId) {
+    public BentenMessage sendText(String text, String sessionId) throws AiException{
         return sendText(text,sessionId,false);
     }
 
     @Override
-    public BentenMessage sendText(String text, String sessionId, boolean reset) {
+    public BentenMessage sendText(String text, String sessionId, boolean reset) throws AiException{
 
         SessionsClient sessionsClient = null;
         try {
