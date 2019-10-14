@@ -1,9 +1,6 @@
 package com.intuit.benten.hackernews.actionnhandlers;
 
 import com.intuit.benten.common.actionhandlers.BentenHandlerResponse;
-import com.intuit.benten.common.helpers.BentenMessageHelper;
-import com.intuit.benten.common.nlp.BentenMessage;
-import com.intuit.benten.hackernews.actionhandlers.HackernewsActionParameters;
 import com.intuit.benten.hackernews.exceptions.BentenHackernewsException;
 import com.intuit.benten.hackernews.model.HackernewsItem;
 import com.intuit.benten.hackernews.utils.HackernewsConstants;
@@ -31,14 +28,11 @@ public class BaseHackernewsGetCollectionActionTest {
     // No limit or offset specified, only action name
     @Test
     public void testHandleBasicMessage() {
-        BentenMessage bentenMessage = new BentenMessage();
-        bentenMessage.setAction(HackernewsConstants.Actions.ACTION_HACKERNEWS_GET_BEST_STORIES);
+        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION;
+        Integer resultSetSize = null;
+        Integer offset = null;
 
-        String action = bentenMessage.getAction();
-        Integer limit = BentenMessageHelper.getParameterAsInteger(bentenMessage, HackernewsActionParameters.LIMIT);
-        Integer offset = BentenMessageHelper.getParameterAsInteger(bentenMessage, HackernewsActionParameters.OFFSET);
-
-        List<HackernewsItem> hackernewsItems = hackernewsService.fetchHackernewsContent(action, limit, offset);
+        List<HackernewsItem> hackernewsItems = hackernewsService.fetchHackernewsCollectionContent(action, resultSetSize, offset, null);
         BentenHandlerResponse bentenHandlerResponse = new BentenHandlerResponse();
         bentenHandlerResponse.setBentenSlackResponse(SlackHackerNewsMessageRenderer.renderItemList(hackernewsItems));
 
@@ -48,41 +42,63 @@ public class BaseHackernewsGetCollectionActionTest {
     // Negative limit
     @Test
     public void testHandleMessageWithNegativeLimit() {
-        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_GET_BEST_STORIES;
-        Integer limit = -1;
+        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION;
+        Integer resultSetSize = -1;
         Integer offset = null;
 
         try {
-            hackernewsService.fetchHackernewsContent(action, limit, offset);
+            hackernewsService.fetchHackernewsCollectionContent(action, resultSetSize, offset, null);
         } catch (BentenHackernewsException e) {
-            Assert.assertEquals(e.getMessage(), HackernewsConstants.ErrorMessages.NEGATIVE_LIMIT_OR_OFFSET);
+            Assert.assertNotNull(e.getMessage());
         }
     }
 
     // Negative offset
     @Test
     public void testHandleMessageWithNegativeOffset() {
-        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_GET_BEST_STORIES;
-        Integer limit = null;
+        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION;
+        Integer resultSetSize = null;
         Integer offset = -1;
 
         try {
-            hackernewsService.fetchHackernewsContent(action, limit, offset);
+            hackernewsService.fetchHackernewsCollectionContent(action, resultSetSize, offset, null);
         } catch (BentenHackernewsException e) {
-            Assert.assertEquals(e.getMessage(), HackernewsConstants.ErrorMessages.NEGATIVE_LIMIT_OR_OFFSET);
+            Assert.assertNotNull(e.getMessage());
         }
     }
 
+    // Negative resultSetSize and offset
     @Test
     public void testHandleMessageWithNegativeLimitAndOffset() {
-        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_GET_BEST_STORIES;
-        Integer limit = -1;
+        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION;
+        Integer resultSetSize = -1;
         Integer offset = -1;
 
         try {
-            hackernewsService.fetchHackernewsContent(action, limit, offset);
+            hackernewsService.fetchHackernewsCollectionContent(action, resultSetSize, offset, null);
         } catch (BentenHackernewsException e) {
-            Assert.assertEquals(e.getMessage(), HackernewsConstants.ErrorMessages.NEGATIVE_LIMIT_OR_OFFSET);
+            Assert.assertNotNull(e.getMessage());
         }
+    }
+
+    // Custom resultSetSize and default offset
+    @Test
+    public void testHandleMessageWithNonDefaultLimit() {
+        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION;
+        int resultSetSize = 15;
+
+        List<HackernewsItem> items = hackernewsService.fetchHackernewsCollectionContent(action, resultSetSize, null, null);
+        Assert.assertEquals(items.size(), resultSetSize);
+    }
+
+    // Custom resultSetSize and default offset
+    @Test
+    public void testHandleMessageWithCustomStartIndex() {
+        String action = HackernewsConstants.Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION;
+        int resultSetSize = 4;
+        int startIndex = 5;
+
+        List<HackernewsItem> items = hackernewsService.fetchHackernewsCollectionContent(action, resultSetSize, null, startIndex);
+        Assert.assertEquals(items.size(), resultSetSize);
     }
 }

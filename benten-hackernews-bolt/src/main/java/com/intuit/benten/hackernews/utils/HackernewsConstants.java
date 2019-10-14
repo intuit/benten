@@ -3,27 +3,28 @@ package com.intuit.benten.hackernews.utils;
 import com.intuit.benten.hackernews.exceptions.BentenHackernewsException;
 
 public class HackernewsConstants {
-    public static final int HACKERNEWS_MAX_ITEM_LIMIT = 25;
+    static final int HACKERNEWS_MAX_ITEM_LIMIT = 25;
+    static final int HACKERNEWS_DEFAULT_OFFSET = 0;
+    static final int HACKERNEWS_MAX_THREADS = 25;
     public static final int HACKERNEWS_DEFAULT_ITEM_LIMIT = 10;
-    public static final int HACKERNEWS_DEFAULT_OFFSET = 0;
-    public static final int HACKERNEWS_MAX_THREADS = 25;
 
-    public static class ApiEndpoints {
-        public static final String TOP_STORIES = "topstories.json";
-        public static final String NEW_STORIES = "newstories.json";
-        public static final String BEST_STORIES = "beststories.json";
-        public static final String LATEST_ASKS = "askstories.json";
-        public static final String LATEST_SHOW = "showstories.json";
-        public static final String LATEST_JOB = "jobstories.json";
-        public static final String MAX_ITEM = "maxitem.json";
-        public static final String ITEM = "item";
-        public static final String PRETTY_PRINT = "?print=pretty";
-        public static final String JSON = ".json";
-        public static final String HACKERNEWS_ITEM_URL = "https://news.ycombinator.com/item?id=";
+    static class ApiEndpoints {
+        static final String TOP_STORIES = "topstories.json";
+        static final String NEW_STORIES = "newstories.json";
+        static final String BEST_STORIES = "beststories.json";
+        static final String LATEST_ASKS = "askstories.json";
+        static final String LATEST_SHOW = "showstories.json";
+        static final String LATEST_JOB = "jobstories.json";
+        static final String ITEM = "item";
+        static final String PRETTY_PRINT = "?print=pretty";
+        static final String JSON = ".json";
+        static final String HACKERNEWS_ITEM_URL = "https://news.ycombinator.com/item?id=";
 
-        public static String fromActionName(String name) {
+        static String fromActionName(String name) {
             switch(name) {
+                // TEST actions run using the /topstories endpoint since it seems reliable
                 case Actions.ACTION_HACKERNEWS_GET_TOP_STORIES:
+                case Actions.ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION:
                     return HackernewsConstants.ApiEndpoints.TOP_STORIES;
                 case Actions.ACTION_HACKERNEWS_GET_NEW_STORIES:
                     return HackernewsConstants.ApiEndpoints.NEW_STORIES;
@@ -35,21 +36,17 @@ public class HackernewsConstants {
                     return HackernewsConstants.ApiEndpoints.LATEST_SHOW;
                 case Actions.ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES:
                     return HackernewsConstants.ApiEndpoints.LATEST_JOB;
-                case Actions.ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID:
-                    return HackernewsConstants.ApiEndpoints.MAX_ITEM;
                 default:
                     throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.INVALID_ACTION_NAME + name);
             }
         }
     }
 
-    public static class ErrorMessages {
-        public static final String ACTION_LIMIT_AND_OFFSET_ZERO = "Both limit and offset cannot be 0";
-        public static final String INVALID_LIMIT_AND_OFFSET_CONFIGURATION = "Invalid limit and offset configuration";
-        public static final String NEGATIVE_LIMIT_OR_OFFSET = "Invalid negative limit or offset provided";
-        public static final String LIMIT_EXCEEDS_MAX_LIMIT = "Limit exceeded max item limit of 25, value: ";
-        public static final String INVALID_ACTION_NAME = "Invalid action name: ";
-        public static final String ITEM_REQUEST_FAILED = "Item Call failed: ";
+    static class ErrorMessages {
+        static final String INVALID_LIMIT_AND_OFFSET_CONFIGURATION = "Invalid limit and offset configuration";
+        static final String LIMIT_EXCEEDS_MAX_LIMIT = "Limit exceeded max item limit of 25, value: ";
+        static final String INVALID_ACTION_NAME = "Invalid action name: ";
+        static final String ITEM_REQUEST_FAILED = "Item Call failed: ";
     }
 
     public static class Actions {
@@ -59,11 +56,14 @@ public class HackernewsConstants {
         public static final String ACTION_HACKERNEWS_GET_LATEST_ASKS = "action_hackernews_latest_asks";
         public static final String ACTION_HACKERNEWS_GET_LATEST_SHOW_STORIES = "action_hackernews_get_latest_show_stories";
         public static final String ACTION_HACKERNEWS_GET_LATEST_JOB_STORIES = "action_hackernews_get_latest_job_stories";
-        public static final String ACTION_HACKERNEWS_GET_NEWEST_CONTENT_ID = "action_hackernews_newest_content_id";
+
+        // Test action used only for automated testing
+        public static final String ACTION_HACKERNEWS_TEST_FETCH_COLLECTION_ACTION = "action_hackernews_test";
     }
 
     public static class Parameters {
-        public static final String LIMIT = "limit";
+        public static final String RESULT_SET_SIZE = "resultSetSize";
         public static final String OFFSET = "offset";
+        public static final String START_INDEX = "startIndex";
     }
 }

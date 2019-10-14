@@ -19,15 +19,16 @@ public class FetchHackernewsItemTask implements Callable<HttpResponse> {
 
     @Override
     public HttpResponse call() {
-        StringBuilder sb = new StringBuilder(uri);
-        sb.append("/")
-            .append(HackernewsConstants.ApiEndpoints.ITEM).append("/")
-            .append(itemId).append(HackernewsConstants.ApiEndpoints.JSON)
-            .append(HackernewsConstants.ApiEndpoints.PRETTY_PRINT);
-
-        HttpGet request = new HttpGet(sb.toString());
-
         try {
+            if (uri == null || itemId == null) {
+                throw new BentenHackernewsException("either the uri or itemId was null");
+            }
+
+            String sb = uri + "/"
+                    + HackernewsConstants.ApiEndpoints.ITEM + "/"
+                    + itemId + HackernewsConstants.ApiEndpoints.JSON
+                    + HackernewsConstants.ApiEndpoints.PRETTY_PRINT;
+            HttpGet request = new HttpGet(sb);
             HttpResponse res = httpHelper.getClient().execute(request);
 
             if (res.getStatusLine().getStatusCode() != 200) {

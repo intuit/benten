@@ -9,9 +9,11 @@ import com.intuit.benten.hackernews.utils.HackernewsConstants;
 import com.intuit.benten.hackernews.utils.HackernewsService;
 import com.intuit.benten.hackernews.utils.SlackHackerNewsMessageRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BaseHackernewsGetCollectionAction {
     @Autowired
     private HackernewsService hackernewsService;
@@ -19,13 +21,20 @@ public class BaseHackernewsGetCollectionAction {
     public BentenHandlerResponse handle(BentenMessage bentenMessage) {
         BentenHandlerResponse bentenHandlerResponse = new BentenHandlerResponse();
         String action = bentenMessage.getAction();
-        Integer limit = BentenMessageHelper.getParameterAsInteger(bentenMessage,
-                HackernewsConstants.Parameters.LIMIT);
+        Integer resultSetSize = BentenMessageHelper.getParameterAsInteger(bentenMessage,
+                HackernewsConstants.Parameters.RESULT_SET_SIZE);
         Integer offset = BentenMessageHelper.getParameterAsInteger(bentenMessage,
                 HackernewsConstants.Parameters.OFFSET);
+        Integer startIndex = BentenMessageHelper.getParameterAsInteger(bentenMessage,
+                HackernewsConstants.Parameters.START_INDEX);
+
 
         try {
-            List<HackernewsItem> hackernewsItems = hackernewsService.fetchHackernewsContent(action, limit, offset);
+            List<HackernewsItem> hackernewsItems = hackernewsService.fetchHackernewsCollectionContent(
+                    action,
+                    resultSetSize,
+                    offset,
+                    startIndex);
             bentenHandlerResponse.setBentenSlackResponse(
                     SlackHackerNewsMessageRenderer.renderItemList(hackernewsItems));
             return bentenHandlerResponse;

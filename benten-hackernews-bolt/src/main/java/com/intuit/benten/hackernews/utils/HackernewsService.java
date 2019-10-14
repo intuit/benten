@@ -3,6 +3,7 @@ package com.intuit.benten.hackernews.utils;
 import com.intuit.benten.common.http.HttpHelper;
 import com.intuit.benten.hackernews.exceptions.BentenHackernewsException;
 import com.intuit.benten.hackernews.model.HackernewsItem;
+import com.intuit.benten.hackernews.model.HackernewsSetRange;
 import com.intuit.benten.hackernews.properties.HackernewsProperties;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -33,15 +34,18 @@ public class HackernewsService {
     @Autowired
     private HackernewsExecutorService hackernewsExecutorService;
 
-    public List<HackernewsItem> fetchHackernewsContent(String actionName, Integer limit, Integer offset) throws BentenHackernewsException {
-        return requestItemIds(HackernewsConstants.ApiEndpoints.fromActionName(actionName), limit, offset);
+    public List<HackernewsItem> fetchHackernewsCollectionContent(String actionName,
+                                                                 Integer resultSetSize,
+                                                                 Integer offset,
+                                                                 Integer startIndex) throws BentenHackernewsException {
+        return requestItemIds(HackernewsConstants.ApiEndpoints.fromActionName(actionName),
+                resultSetSize, offset, startIndex);
     }
 
-    private List<HackernewsItem> requestItemIds(String endpoint, Integer limit, Integer offset) throws BentenHackernewsException {
-        if (!validateInitialParameters(limit, offset)) {
-            throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.NEGATIVE_LIMIT_OR_OFFSET);
-        }
-
+    private List<HackernewsItem> requestItemIds(String endpoint,
+                                                Integer resultSetSize,
+                                                Integer offset,
+                                                Integer startIndex) throws BentenHackernewsException {
         String uri = buildHackernewsRequestUrl(endpoint);
         HttpGet req = new HttpGet(uri);
 
@@ -54,9 +58,8 @@ public class HackernewsService {
             }
 
             String json = EntityUtils.toString(res.getEntity());
-            List<Integer> hackerNewsItemIds = parseListOfIds(json, limit, offset);
-            List<HackernewsItem> items = fetchHackerNewsItems(hackerNewsItemIds);
-            return items;
+            List<Integer> hackerNewsItemIds = parseListOfIds(json, resultSetSize, offset, startIndex);
+            return fetchHackerNewsItems(hackerNewsItemIds);
         } catch (IOException e) {
             throw new BentenHackernewsException("requestItemIds result could not be handled", e.getMessage());
         }
@@ -77,36 +80,52 @@ public class HackernewsService {
 
     // Normally the json response from an api call would be deserialized with an object mapper
     // however the hacker news api returns invalid json. its raw response is literally [id1, id2, ...]
-    private List<Integer> parseListOfIds(String idListJson, Integer limit, Integer offset) {
-        if (limit == null) {
-            limit = HackernewsConstants.HACKERNEWS_DEFAULT_ITEM_LIMIT;
-        } else if (limit > HackernewsConstants.HACKERNEWS_MAX_ITEM_LIMIT) {
-            logger.info(HackernewsConstants.ErrorMessages.LIMIT_EXCEEDS_MAX_LIMIT + limit);
-            limit = HackernewsConstants.HACKERNEWS_MAX_ITEM_LIMIT;
+    // so we need to do some string manipulation to work with it
+    private List<Integer> parseListOfIds(String idListJson, Integer resultSetSize, Integer offset, Integer startIndex) {
+        boolean isOffsetBased = true;
+        if (resultSetSize == null || 0 == resultSetSize || 0 > resultSetSize) {
+            resultSetSize = HackernewsConstants.HACKERNEWS_DEFAULT_ITEM_LIMIT;
+        } else if (resultSetSize > HackernewsConstants.HACKERNEWS_MAX_ITEM_LIMIT) {
+            logger.info(HackernewsConstants.ErrorMessages.LIMIT_EXCEEDS_MAX_LIMIT + resultSetSize);
+            resultSetSize = HackernewsConstants.HACKERNEWS_MAX_ITEM_LIMIT;
         }
 
-        if (offset == null) {
-            offset = HackernewsConstants.HACKERNEWS_DEFAULT_OFFSET;
+        // default to offset if it is set, or if both offset and startIndex are set
+        if (offset == null && startIndex != null) {
+            isOffsetBased = false;
+        } else {
+            if (offset == null || 0 > offset) {
+                offset = HackernewsConstants.HACKERNEWS_DEFAULT_OFFSET;
+            }
         }
 
         String trimmedIdList = idListJson.substring(2, idListJson.length() - 2);
         String[] stringIds = trimmedIdList.split(",");
-        Integer startIndex = limit * offset;
-        int stopIndex = startIndex + limit - 1;
+        HackernewsSetRange floorAndCeilingRange;
 
-        if (limit == 0 && offset == 0) {
-            throw new BentenHackernewsException(HackernewsConstants.ErrorMessages.ACTION_LIMIT_AND_OFFSET_ZERO);
+        if (isOffsetBased) {
+            floorAndCeilingRange = calculateCollectionRangeByOffset(resultSetSize, offset);
+        } else {
+            if ((startIndex - 1) < 0) {
+                throw new BentenHackernewsException("Start index cannot be less than 1.");
+            } else {
+                floorAndCeilingRange = calculateCollectionRangeByStartIndex(resultSetSize, startIndex);
+            }
         }
 
-        if (stopIndex > stringIds.length) {
-            StringBuilder sb = new StringBuilder(HackernewsConstants.ErrorMessages.INVALID_LIMIT_AND_OFFSET_CONFIGURATION);
-            sb.append("Hackernews Ids length: ").append(stringIds.length);
-            sb.append("StartIndex: ").append(startIndex);
-            sb.append("Offset: ").append(offset);
-            throw new BentenHackernewsException(sb.toString());
+        Integer floor = floorAndCeilingRange.getMin();
+        Integer ceiling = floorAndCeilingRange.getMax();
+
+        if (ceiling > stringIds.length) {
+            String sb = HackernewsConstants.ErrorMessages.INVALID_LIMIT_AND_OFFSET_CONFIGURATION
+                    + "Hackernews Ids length: "
+                    + stringIds.length
+                    + "StartIndex: " + floor
+                    + "Offset: " + offset;
+            throw new BentenHackernewsException(sb);
         }
 
-        String[] trimmedIdsSubset = Arrays.copyOfRange(stringIds, startIndex, stopIndex);
+        String[] trimmedIdsSubset = Arrays.copyOfRange(stringIds, floor, ceiling);
 
         return Arrays.stream(trimmedIdsSubset)
                 .map(String::trim)
@@ -114,16 +133,15 @@ public class HackernewsService {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
-    private boolean validateInitialParameters(Integer limit, Integer offset) throws BentenHackernewsException {
-        if (limit != null && 0 > limit) {
-            return false;
-        }
+    private HackernewsSetRange calculateCollectionRangeByOffset(Integer size, Integer offset) {
+        Integer startIndex = (size * offset);
+        int stopIndex = (startIndex + size);
+        return new HackernewsSetRange(startIndex, stopIndex);
+    }
 
-        if (offset != null && 0 > offset) {
-            return false;
-        }
-
-        return true;
+    private HackernewsSetRange calculateCollectionRangeByStartIndex(Integer size, Integer startIndex) {
+        int stopIndex = (startIndex + size);
+        return new HackernewsSetRange(startIndex, stopIndex);
     }
 
     private List<HackernewsItem> fetchHackerNewsItems(List<Integer> itemIds) {
