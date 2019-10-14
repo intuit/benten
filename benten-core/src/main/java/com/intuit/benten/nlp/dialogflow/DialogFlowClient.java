@@ -1,19 +1,14 @@
 package com.intuit.benten.nlp.dialogflow;
 
-import ai.api.AIConfiguration;
-import ai.api.AIDataService;
-import ai.api.AIServiceContext;
-import ai.api.AIServiceContextBuilder;
-import ai.api.model.AIRequest;
-import ai.api.model.AIResponse;
+import com.google.cloud.dialogflow.v2.*;
+import com.google.cloud.dialogflow.v2.TextInput.Builder;
 import com.intuit.benten.common.nlp.BentenMessage;
 import com.intuit.benten.nlp.NlpClient;
-import com.intuit.benten.exceptions.AiException;
-import com.intuit.benten.properties.BentenProxyConfig;
+import com.intuit.benten.properties.AiProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.SocketAddress;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * @author Divakar Ungatla
@@ -22,57 +17,48 @@ import java.net.SocketAddress;
 
 public class DialogFlowClient implements NlpClient {
 
+    private String PROJECT_ID;
 
-    private AIConfiguration configuration;
-    private AIDataService aiDataService ;
-
-
-    public DialogFlowClient(String token, BentenProxyConfig bentenProxyConfig) {
-        configuration =
-                new AIConfiguration(token);
-        if (bentenProxyConfig.isProxyEnabled()) {
-            SocketAddress socketAddress =
-                    new InetSocketAddress(bentenProxyConfig.getHost(), bentenProxyConfig.getPort());
-            Proxy proxy =
-                    new Proxy(Proxy.Type.valueOf(bentenProxyConfig.getProtocol().toUpperCase()), socketAddress);
-            configuration.setProxy(proxy);
-        }
-        aiDataService =
-                new AIDataService(configuration);
+    public DialogFlowClient(String PROJECT_ID) {
+        this.PROJECT_ID = PROJECT_ID;
     }
 
-
     @Override
-    public BentenMessage sendText(String text, String sessionId) throws AiException {
+    public BentenMessage sendText(String text, String sessionId) {
         return sendText(text,sessionId,false);
     }
 
     @Override
-    public BentenMessage sendText(String text, String sessionId, boolean reset) throws AiException {
-        AIServiceContext aiServiceContext =
-                AIServiceContextBuilder.buildFromSessionId(sessionId);
+    public BentenMessage sendText(String text, String sessionId, boolean reset) {
 
-        AIRequest request =
-                new AIRequest(text);
-
-        AIResponse response;
-        BentenMessage bentenMessage;
+        SessionsClient sessionsClient = null;
         try {
-            if(reset){
-                aiDataService.resetActiveContexts(aiServiceContext);
-            }
+            sessionsClient = SessionsClient.create();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SessionName session = SessionName.of(PROJECT_ID, sessionId);
+            BentenMessage bentenMessage;
 
-            response = aiDataService.request(request, aiServiceContext);
+            Builder textInput = TextInput.newBuilder().setText(text).setLanguageCode("en-US");
+            // Build the query with the TextInput
+            QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
+            DetectIntentRequest detectIntentRequest =
+                    DetectIntentRequest.newBuilder()
+                        .setSession(session.toString())
+                        .setQueryInput(queryInput)
+                        .build();
+            DetectIntentResponse response = sessionsClient.detectIntent(detectIntentRequest);
+            // Display the query result
+            QueryResult queryResult = response.getQueryResult();
 
             bentenMessage = new BentenMessage();
-            bentenMessage.setSpeech(response.getResult().getFulfillment().getSpeech());
-            bentenMessage.setAction(response.getResult().getAction());
-            bentenMessage.setIsActionComplete(!response.getResult().isActionIncomplete());
-            bentenMessage.setParameters(response.getResult().getParameters());
-
-        } catch (Exception e) {
-            throw new AiException(e.getMessage());
-        }
+            bentenMessage.setSpeech(queryResult.getFulfillmentText());
+            bentenMessage.setAction(queryResult.getAction());
+            bentenMessage.setIsActionComplete(queryResult.getAllRequiredParamsPresent());
+            bentenMessage.setParameters(new HashMap<>());
+            //transform v2 Dialogflow params to JsonElement
+            bentenMessage.setParameterstoJsonElement(queryResult.getParameters().getFieldsMap().entrySet());
         return bentenMessage;
     }
 

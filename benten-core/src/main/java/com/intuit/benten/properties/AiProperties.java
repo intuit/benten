@@ -13,14 +13,10 @@ import org.springframework.stereotype.Component;
 @PropertySource(value = "classpath:benten.properties")
 public class AiProperties {
 
-    private String token;
+    private String projectId;
 
-    public String getToken() {
-        return token;
-    }
+    public String getProjectId() { return projectId; }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+    public void setProjectId(String projectId) { this.projectId = projectId; }
 
 }
