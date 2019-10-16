@@ -8,8 +8,8 @@ import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
 import com.intuit.benten.common.nlp.BentenMessage;
 import com.intuit.benten.nlp.NlpClient;
-import com.intuit.benten.hackernews.exceptions.AiException;
-import com.intuit.benten.hackernews.properties.BentenProxyConfig;
+import com.intuit.benten.exceptions.AiException;
+import com.intuit.benten.properties.BentenProxyConfig;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
