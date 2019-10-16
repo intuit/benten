@@ -3,7 +3,7 @@ package com.intuit.benten.ai.dialogflow;
 //import BentenMessage;
 import com.intuit.benten.nlp.NlpClient;
 import com.intuit.benten.nlp.dialogflow.DialogFlowClient;
-import com.intuit.benten.hackernews.properties.BentenProxyConfig;
+import com.intuit.benten.properties.BentenProxyConfig;
 import com.intuit.benten.properties.AiProperties;
 import org.junit.Before;
 import org.junit.Test;
