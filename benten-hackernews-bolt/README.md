@@ -6,6 +6,11 @@ is a little unusual when it comes to standard apis. The data that Hackernews exp
 a dump of their in-memory data structures into a firebase firestore database, more info 
 [here](https://github.com/HackerNews/API).
 
+Hackernews's API is only capable of returning a single item via its `id` or a list of `id`s that you can then use to
+query for said `id`s content. Because of the nature of this API I implemented a multithreaded solution that will
+parallelize multiple queries to fetch items from the API via their `id`s. Ideally this service could be abstrscted and
+made useful to any and all other bolts in this project.
+
 ## Contextual Information (Definitions)
 - Collection: A list or array of one of the core types of content that hackernews' api returns.
 I.e a list of `topstories`, `newstories`, `beststories`, `askstories`, `showstories`, `jobstories`.
