@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-@ActionHandler(action = "action_benten_example")
+@ActionHandler(action = "action_benten_weather")
 public class BentenWeatherActionHandler implements BentenActionHandler {
 
   public static final String CITY = "city";
