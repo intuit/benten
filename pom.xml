@@ -39,6 +39,8 @@
         <module>benten-mock</module>
         <module>benten-archetype</module>
         <module>benten-examples</module>
+        <module>benten-weather-bolt</module>
+        <module>benten-starter</module>
     </modules>
 
     <properties>
