@@ -133,7 +133,7 @@ vi src/main/resources/benten.properties
 ```
 In line #11 replace `<slackbot token>` with your bot token from bot creation step above [Creating Slack bot](#creating-slack-bot)
 
-##Run benten on Docker
+## Run benten on Docker
 
 Install docker on your machine, follow https://docs.docker.com/docker-for-mac/install/
 
