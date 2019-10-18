@@ -145,7 +145,7 @@ docker build -f Dockerfile -t benten .
 docker container run -it --publish 8081:8080 benten
 ```
 
-##Alternate method
+## Alternate method
 ```sh
 mvn spring-boot:run
 ```
