@@ -19,9 +19,15 @@ import java.util.HashMap;
 public class DialogFlowClient implements NlpClient {
 
     private String PROJECT_ID;
+    SessionsClient sessionsClient;
 
     public DialogFlowClient(String PROJECT_ID) {
         this.PROJECT_ID = PROJECT_ID;
+        try {
+            sessionsClient = SessionsClient.create();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -30,15 +36,8 @@ public class DialogFlowClient implements NlpClient {
     }
 
     @Override
-    public BentenMessage sendText(String text, String sessionId, boolean reset) throws AiException{
-
-        SessionsClient sessionsClient = null;
-        try {
-            sessionsClient = SessionsClient.create();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        SessionName session = SessionName.of(PROJECT_ID, sessionId);
+    public BentenMessage sendText(String text, String sessionId, boolean reset) throws AiException {
+            SessionName session = SessionName.of(PROJECT_ID, sessionId);
             BentenMessage bentenMessage;
 
             Builder textInput = TextInput.newBuilder().setText(text).setLanguageCode("en-US");
