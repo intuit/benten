@@ -137,23 +137,20 @@ vi src/main/resources/benten.properties
 ```
 In line #11 replace `<slackbot token>` with your bot token from bot creation step above [Creating Slack bot](#creating-slack-bot)
 
-## Run benten on Docker
+```sh
+mvn spring-boot:run
+```
+Now if you see your bot in Slack it should be active! Type `hi` to see it working. Type `help jira` or `create jira story` and you can see responses.
 
-Install docker on your machine, follow https://docs.docker.com/docker-for-mac/install/
+If you want to run benten on docker then install docker on your machine.
 
-Now do the below steps on terminal.
+Execute below steps in the terminal.
 
 ```sh
 cd benten-starter
 docker build -f Dockerfile -t benten .
 docker container run -it --publish 8081:8080 benten
 ```
-
-## Alternate method
-```sh
-mvn spring-boot:run
-```
-Now if you see your bot in Slack it should be active! Type `hi` to see it working. Type `help jira` or `create jira story` and you can see responses. 
 
 ## Point BenTen to your own Jira instance
 
