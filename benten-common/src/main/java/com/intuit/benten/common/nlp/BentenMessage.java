@@ -88,7 +88,7 @@ public class BentenMessage {
                     this.parameters.put(entry.getKey(), new JsonPrimitive(String.valueOf(entry.getValue().getStructValue())));
                 }
                 else if (entry.getValue().getKindCase().getNumber() == Value.NUMBER_VALUE_FIELD_NUMBER) {
-                    this.parameters.put(entry.getKey(), new JsonPrimitive(String.valueOf(entry.getValue().getNumberValue())));
+                    this.parameters.put(entry.getKey(), new JsonPrimitive((int) entry.getValue().getNumberValue()));
                 }
             }
     }

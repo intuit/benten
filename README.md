@@ -111,7 +111,7 @@ Now that team is created, let us create a slack bot
 
 You might have noticed the conversation interface of BenTen. Benten uses [Dialog Flow](https://dialogflow.com/) to build the conversations. You can read more about Dialog flow at https://dialogflow.com/docs/getting-started/basics.
 
-Let us set up your own dialog flow agent. Download the agent zip file from here [benten-agent](https://github.com/DivakarUngatla/divakarungatla.github.io/raw/master/benten/dialogflow-agent/benten-open-source.zip)
+Let us set up your own dialog flow agent. Download the agent zip file from here [benten-agent-v2](https://drive.google.com/file/d/1jx2mnp4iqE8C0TG1FRRfrRY4adlSwhXQ/view?usp=sharing)
 
 Follow the instructions in this page [Create-BenTen-Agent-in-Dialog-flow](https://github.com/intuit/benten/wiki/Create-BenTen-Agent-in-Dialog-flow) to create the agent.
 
@@ -162,11 +162,9 @@ mvn spring-boot:run
 ```
 Now try the jira commands from your slack-bot and it should work against your Jira!
 
-If you need to use a proxy when you are on a corporate network update below proxy settings accordingly and BenTen will honor the proxy settings
+If you need to use a proxy when you are on a corporate network, add JVM proxy params to the run command:
 ```
-#benten.proxy.port=<proxy-port>
-#benten.proxy.host=<proxy-host>
-#benten.proxy.protocol=http
+mvn spring-boot:run -Dhttp.proxyHost=<proxy-host> -Dhttp.proxyPort=<proxy-port>
 ```
 ## Point BenTen to your own Jenkins instance
 
