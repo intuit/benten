@@ -113,9 +113,13 @@ You might have noticed the conversation interface of BenTen. Benten uses [Dialog
 
 Let us set up your own dialog flow agent. Download the agent zip file from here [benten-agent](https://github.com/DivakarUngatla/divakarungatla.github.io/raw/master/benten/dialogflow-agent/benten-open-source.zip)
 
-Follow the instructions in this page [Create-BenTen-Agent-in-Dialog-flow](https://github.com/intuit/benten/wiki/Create-BenTen-Agent-in-Dialog-flow). 
+Follow the instructions in this page [Create-BenTen-Agent-in-Dialog-flow](https://github.com/intuit/benten/wiki/Create-BenTen-Agent-in-Dialog-flow) to create the agent.
 
-At the end of it you should have your own `dialog flow token`.
+Follow the instructions in this page [OAuth Setup For Dialogflow Agent](https://github.com/intuit/benten/wiki/OAuth-Setup-For-Dialogflow-Agent) to setup OAuth for the agent. 
+
+At the end of it you should have your own `dialogflow Project ID` with OAuth setup complete.
+
+**NOTE**: The dialogflow client in Benten will not work unless the OAuth setup is complete.
 
 Now open benten.properties
 
@@ -123,7 +127,7 @@ Now open benten.properties
 cd benten-starter
 vi src/main/resources/benten.properties
 ```
-In line #10 change the value of `benten.ai.token` with your token from above
+In line #10 change the value of `benten.ai.projectId` with your Project ID from above
 
 # Start BenTen
 ```sh
