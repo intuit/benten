@@ -23,15 +23,12 @@ public class BentenStarterApplication extends SpringBootServletInitializer {
     AiProperties aiProperties;
 
     @Autowired
-    BentenProxyConfig bentenProxyConfig;
-
-    @Autowired
     MockFeatureServerRunner mockFeatureServerRunner;
 
     @Bean
     public NlpClient aiClient(){
 
-        return new DialogFlowClient(aiProperties.getToken(),bentenProxyConfig);
+        return new DialogFlowClient(aiProperties.getProjectId());
     }
 
     @PostConstruct

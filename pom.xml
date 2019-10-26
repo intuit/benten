@@ -40,6 +40,7 @@
         <module>benten-archetype</module>
         <module>benten-examples</module>
         <module>benten-flickr-bolt</module>
+        <module>benten-weather-bolt</module>
     </modules>
 
     <properties>
