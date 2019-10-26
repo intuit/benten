@@ -1,12 +1,16 @@
 package com.intuit.benten.common.nlp;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.protobuf.Value;
 import com.intuit.benten.common.channel.Channel;
 import com.intuit.benten.common.channel.ChannelInformation;
 import com.intuit.benten.common.constants.SlackConstants;
 import com.intuit.benten.common.helpers.BentenMessageHelper;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Divakar Ungatla
@@ -74,5 +78,18 @@ public class BentenMessage {
 
     public String toString(){
         return "action="+action+", user="+ BentenMessageHelper.getParameterAsString(parameters,SlackConstants.CURRENT_USER);
+    }
+
+    public void setParameterstoJsonElement(Set<Map.Entry<String,com.google.protobuf.Value>> entrySet) {
+            for (Map.Entry<String, Value> entry : entrySet) {
+                if (entry.getValue().getKindCase().getNumber() == Value.STRING_VALUE_FIELD_NUMBER) {
+                    this.parameters.put(entry.getKey(), new JsonPrimitive(entry.getValue().getStringValue()));
+                } else if (entry.getValue().getKindCase().getNumber() == Value.STRUCT_VALUE_FIELD_NUMBER) {
+                    this.parameters.put(entry.getKey(), new JsonPrimitive(String.valueOf(entry.getValue().getStructValue())));
+                }
+                else if (entry.getValue().getKindCase().getNumber() == Value.NUMBER_VALUE_FIELD_NUMBER) {
+                    this.parameters.put(entry.getKey(), new JsonPrimitive((int) entry.getValue().getNumberValue()));
+                }
+            }
     }
 }

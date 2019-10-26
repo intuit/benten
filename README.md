@@ -37,6 +37,17 @@ If you're wondering why the name BenTen, you can find an answer here [Why the na
 |Details of Jenkins job  |```details of jenkins job```, ```details of jenkins job Purchase-Service-Release```  |
 |Build Jenkins job  |```build jenkins job Purchase-Service-Release```  |
 
+|Flickr Feature|Command  |
+|--|--|
+|Search for Photos or Videos  |```flickr 5 photos of cats```, ```flickr videos of dogs```  |
+|Search Trendy Photos  |```flickr trendy photos```, ```flickr popular photos```  |
+|Search Camera Brands  |```flickr canon cameras```  |
+
+|Weather Feature|Command  |
+|--|--|
+|Weather information in current city  | ```How is the weather in San Diego ?```  |
+
+
 ## Let's set up BenTen
 Now that you have experienced the bot, let us set up BenTen with your `own` slack bot and run against your Jira and Jenkins.
 
@@ -68,7 +79,8 @@ mvn clean install -Dmaven.test.skip=true
     <version>0.1.5</version>
 </dependency>
 ```
-#### Include Jira and Jenkins bolts
+
+#### Include Jira, Jenkins, Weather and Flickr bolts
 
 ```xml
 <dependency>
@@ -79,6 +91,15 @@ mvn clean install -Dmaven.test.skip=true
 <dependency>
     <groupId>com.intuit.benten</groupId>
     <artifactId>benten-jenkins-bolt</artifactId>
+    <version>0.1.5</version>
+</dependency>
+<dependency>
+    <groupId>com.intuit.benten</groupId>
+    <artifactId>benten-flickr-bolt</artifactId>
+    <version>0.1.5</version>
+</dependency>
+    <groupId>com.intuit.benten</groupId>  
+    <artifactId>benten-weather-bolt</artifactId>
     <version>0.1.5</version>
 </dependency>
 ```
@@ -111,11 +132,15 @@ Now that team is created, let us create a slack bot
 
 You might have noticed the conversation interface of BenTen. Benten uses [Dialog Flow](https://dialogflow.com/) to build the conversations. You can read more about Dialog flow at https://dialogflow.com/docs/getting-started/basics.
 
-Let us set up your own dialog flow agent. Download the agent zip file from here [benten-agent](https://github.com/DivakarUngatla/divakarungatla.github.io/raw/master/benten/dialogflow-agent/benten-open-source.zip)
+Let us set up your own dialog flow agent. Download the agent zip file from here [benten-agent-v2](https://drive.google.com/file/d/1jx2mnp4iqE8C0TG1FRRfrRY4adlSwhXQ/view?usp=sharing)
 
-Follow the instructions in this page [Create-BenTen-Agent-in-Dialog-flow](https://github.com/intuit/benten/wiki/Create-BenTen-Agent-in-Dialog-flow). 
+Follow the instructions in this page [Create-BenTen-Agent-in-Dialog-flow](https://github.com/intuit/benten/wiki/Create-BenTen-Agent-in-Dialog-flow) to create the agent.
 
-At the end of it you should have your own `dialog flow token`.
+Follow the instructions in this page [OAuth Setup For Dialogflow Agent](https://github.com/intuit/benten/wiki/OAuth-Setup-For-Dialogflow-Agent) to setup OAuth for the agent. 
+
+At the end of it you should have your own `dialogflow Project ID` with OAuth setup complete.
+
+**NOTE**: The dialogflow client in Benten will not work unless the OAuth setup is complete.
 
 Now open benten.properties
 
@@ -123,7 +148,7 @@ Now open benten.properties
 cd benten-starter
 vi src/main/resources/benten.properties
 ```
-In line #10 change the value of `benten.ai.token` with your token from above
+In line #10 change the value of `benten.ai.projectId` with your Project ID from above
 
 # Start BenTen
 ```sh
@@ -136,7 +161,17 @@ In line #11 replace `<slackbot token>` with your bot token from bot creation ste
 ```sh
 mvn spring-boot:run
 ```
-Now if you see your bot in Slack it should be active! Type `hi` to see it working. Type `help jira` or `create jira story` and you can see responses. 
+Now if you see your bot in Slack it should be active! Type `hi` to see it working. Type `help jira` or `create jira story` and you can see responses.
+
+If you want to run benten on docker then install docker on your machine.
+
+Execute below steps in the terminal.
+
+```sh
+cd benten-starter
+docker build -f Dockerfile -t benten .
+docker container run -it --publish 8081:8080 benten
+```
 
 ## Point BenTen to your own Jira instance
 
@@ -158,11 +193,9 @@ mvn spring-boot:run
 ```
 Now try the jira commands from your slack-bot and it should work against your Jira!
 
-If you need to use a proxy when you are on a corporate network update below proxy settings accordingly and BenTen will honor the proxy settings
+If you need to use a proxy when you are on a corporate network, add JVM proxy params to the run command:
 ```
-#benten.proxy.port=<proxy-port>
-#benten.proxy.host=<proxy-host>
-#benten.proxy.protocol=http
+mvn spring-boot:run -Dhttp.proxyHost=<proxy-host> -Dhttp.proxyPort=<proxy-port>
 ```
 ## Point BenTen to your own Jenkins instance
 
@@ -180,6 +213,35 @@ mvn clean install -Dmaven.test.skip=true
 mvn spring-boot:run
 ```
 Type `jenkins` in your bot and try any of the operations to see them work against your jenkins.
+
+## Point BenTen to your own Flickr instance
+
+Make changes for Flickr in `benten.properties`.
+
+[Generate your Flickr API key and secret key](https://www.flickr.com/services/api/keys/)
+
+In line #25,26 change `benten.flickr.apikey` and `benten.flickr.secret` accordingly. BenTen uses these keys to connect to the Flickr API. Save the changes.
+
+Restart your application
+```
+mvn clean install -Dmaven.test.skip=true
+mvn spring-boot:run
+```
+
+## Configure BenTen to [Open Weather Map](https://openweathermap.org/api)
+Sign up for Open weather map api's and get an api token
+
+```sh
+cd benten-starter
+vi src/main/resources/benten.properties
+```
+In Line #26, change `benten.weather.token` to the api token  generated by open weather api.
+
+Restart your application
+```
+mvn clean install -Dmaven.test.skip=true
+mvn spring-boot:run
+```
 
 ## Let's get to Action! (Adding a new ActionHandler)
 

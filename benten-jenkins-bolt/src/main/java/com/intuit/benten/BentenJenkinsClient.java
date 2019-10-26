@@ -48,7 +48,7 @@ public class BentenJenkinsClient {
             jenkinsHttpClient = new JenkinsHttpClient(new URI(jenkinsProperties.getBaseurl()),jenkinsProperties.getUsername(),jenkinsProperties.getPassword());
 
            // logger.info("Connection to Jenkins Server returned: " + jenkins.isRunning());
-           // logger.info("Version returned from Jenkins Http Client: " + jenkinsHttpClient.getJenkinsVersion());
+           // logger.info("Version returned from Jenkins http Client: " + jenkinsHttpClient.getJenkinsVersion());
         }catch (Exception e){
             logger.error("Failed to Connect to Jenkins Instance");
             e.printStackTrace();

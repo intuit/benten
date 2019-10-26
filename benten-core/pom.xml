@@ -36,9 +36,9 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>ai.api</groupId>
-            <artifactId>libai</artifactId>
-            <version>1.6.12</version>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-dialogflow</artifactId>
+            <version>0.114.0-alpha</version>
         </dependency>
         <dependency>
             <groupId>com.github.xuwei-k</groupId>
