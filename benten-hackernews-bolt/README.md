@@ -27,15 +27,6 @@ Then run the following commands.
 5. `mvn clean install -Dmaven.test.skip=true`
 6. `mvn spring-boot:run;`
 
-If you get an error about the `benten-hackernews-bolt` not being found, try running this:
-
-`cd ~/dev/benten/benten-hackernews-bolt/; mvn install:install-file -Dfile=/Users/jleveroni/dev/benten/benten-hackernews-bolt/target/benten-hackernews-bolt-0.1.5.jar -DgroupId=benten-hackernews-bolt -DartifactId=benten-hackernews-bolt -Dversion=0.1.5 -Dpackaging=jar -DgeneratePom=true;`
-
-*Note: im not sure if building and installing the `benten-hackernews-bolt` is necessary. I am not very familiar with java and its package management.
-I did this because when i ran the starter project it could not find the hackernews bolt package since
-it was not installed in my local ~/.m2 folder. If there is a way to fix this please update the readme and
-project accordingly. 
-
 ## Testing
 Initially tests has been provided for every public method exposed in the Hackernews Bolt. If Hackernews
 alters their api and you choose to extend/alter the functionality of this bolt, please make sure to 
