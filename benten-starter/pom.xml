@@ -82,7 +82,11 @@
             <artifactId>benten-weather-bolt</artifactId>
             <version>${benten.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.intuit.benten</groupId>
+            <artifactId>benten-flickr-bolt</artifactId>
+            <version>${benten.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

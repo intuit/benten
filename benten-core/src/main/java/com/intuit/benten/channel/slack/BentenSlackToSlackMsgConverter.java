@@ -50,11 +50,20 @@ public class BentenSlackToSlackMsgConverter {
                 if(bentenSlackAttachment.getTitle() != null) {
                     attachment.setTitle(bentenSlackAttachment.getTitle());
                 }
+                if(bentenSlackAttachment.getTitle_link() != null){
+                    attachment.setTitle_link(bentenSlackAttachment.getTitle_link());
+                }
                 if(bentenSlackAttachment.getPretext() != null){
                     attachment.setPretext(bentenSlackAttachment.getPretext());
                 }
                 if(bentenSlackAttachment.getText() != null){
                     attachment.setText(bentenSlackAttachment.getText());
+                }
+                if(bentenSlackAttachment.getImage_url() != null){
+                    attachment.setImage_url(bentenSlackAttachment.getImage_url());
+                }
+                if(bentenSlackAttachment.getThumb_url() != null){
+                    attachment.setThumb_url(bentenSlackAttachment.getThumb_url());
                 }
 
             }

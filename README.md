@@ -37,6 +37,11 @@ If you're wondering why the name BenTen, you can find an answer here [Why the na
 |Details of Jenkins job  |```details of jenkins job```, ```details of jenkins job Purchase-Service-Release```  |
 |Build Jenkins job  |```build jenkins job Purchase-Service-Release```  |
 
+|Flickr Feature|Command  |
+|--|--|
+|Search for Photos or Videos  |```flickr 5 photos of cats```, ```flickr videos of dogs```  |
+|Search Trendy Photos  |```flickr trendy photos```, ```flickr popular photos```  |
+|Search Camera Brands  |```flickr canon cameras```  |
 
 |Weather Feature|Command  |
 |--|--|
@@ -74,7 +79,8 @@ mvn clean install -Dmaven.test.skip=true
     <version>0.1.5</version>
 </dependency>
 ```
-#### Include Jira, Jenkins & Weather bolts
+
+#### Include Jira, Jenkins, Weather and Flickr bolts
 
 ```xml
 <dependency>
@@ -89,10 +95,13 @@ mvn clean install -Dmaven.test.skip=true
 </dependency>
 <dependency>
     <groupId>com.intuit.benten</groupId>
+    <artifactId>benten-flickr-bolt</artifactId>
+    <version>0.1.5</version>
+</dependency>
+    <groupId>com.intuit.benten</groupId>  
     <artifactId>benten-weather-bolt</artifactId>
     <version>0.1.5</version>
 </dependency>
-
 ```
 
 ## Create a slack team and slackbot(You can skip this section if you already have a slack bot API token)
@@ -205,6 +214,20 @@ mvn spring-boot:run
 ```
 Type `jenkins` in your bot and try any of the operations to see them work against your jenkins.
 
+## Point BenTen to your own Flickr instance
+
+Make changes for Flickr in `benten.properties`.
+
+[Generate your Flickr API key and secret key](https://www.flickr.com/services/api/keys/)
+
+In line #25,26 change `benten.flickr.apikey` and `benten.flickr.secret` accordingly. BenTen uses these keys to connect to the Flickr API. Save the changes.
+
+Restart your application
+```
+mvn clean install -Dmaven.test.skip=true
+mvn spring-boot:run
+```
+
 ## Configure BenTen to [Open Weather Map](https://openweathermap.org/api)
 Sign up for Open weather map api's and get an api token
 
@@ -219,6 +242,7 @@ Restart your application
 mvn clean install -Dmaven.test.skip=true
 mvn spring-boot:run
 ```
+
 ## Let's get to Action! (Adding a new ActionHandler)
 
 Let us build a feature in BenTen now. Each feature is called an `action` in BenTen. Remember! the beauty of BenTen is that you need to concentrate only on the core logic. Let us see how.

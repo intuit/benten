@@ -10,8 +10,11 @@ import java.util.List;
 public class BentenSlackAttachment {
 
     protected String title;
+    protected String title_link;
     protected String text;
     protected String color;
+    protected String image_url;
+    protected String thumb_url;
     protected List<BentenSlackField> bentenSlackFields = new ArrayList<>();
     protected String pretext;
 
@@ -47,6 +50,13 @@ public class BentenSlackAttachment {
         this.title = title;
     }
 
+    public String getTitle_link() {
+        return title_link;
+    }
+
+    public void setTitle_link(String title_link) {
+        this.title_link = title_link;
+    }
 
     public String getPretext() {
         return pretext;
@@ -60,5 +70,19 @@ public class BentenSlackAttachment {
         bentenSlackFields.add(bentenSlackField);
     }
 
+    public String getImage_url() {
+        return image_url;
+    }
 
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public String getThumb_url() {
+        return thumb_url;
+    }
+
+    public void setThumb_url(String thumb_url) {
+        this.thumb_url = thumb_url;
+    }
 }
