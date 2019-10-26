@@ -78,6 +78,11 @@
             <version>${benten.version}</version>
         </dependency>
         <dependency>
+            <groupId>benten-hackernews-bolt</groupId>
+            <artifactId>benten-hackernews-bolt</artifactId>
+            <version>${benten.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.intuit.benten</groupId>
             <artifactId>benten-weather-bolt</artifactId>
             <version>${benten.version}</version>
