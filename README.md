@@ -47,6 +47,8 @@ If you're wondering why the name BenTen, you can find an answer here [Why the na
 |--|--|
 |Weather information in current city  | ```How is the weather in San Diego ?```  |
 
+## BenTen - Architecture
+<img src="https://github.com/DivakarUngatla/divakarungatla.github.io/blob/master/benten/BentenArch.png" width=800 />
 
 ## Let's set up BenTen
 Now that you have experienced the bot, let us set up BenTen with your `own` slack bot and run against your Jira and Jenkins.
